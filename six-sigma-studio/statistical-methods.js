@@ -60,7 +60,8 @@ function totals(a){return a.reduce((p,n)=>p+n,0)}
 function ordered(rows,order){
  const result=[...rows].sort((a,b)=>(Number(a.sequence_no)||0)-(Number(b.sequence_no)||0));
  if(!order)return result;
- return result.sort((a,b)=>{const x=a.values[order],y=b.values[order];let n1=new Date(x).getTime(),n2=new Date(y).getTime();if(Number.isFinite(n1)&&Number.isFinite(n2))return n1-n2;let c=Number(x)-Number(y);if(Number.isFinite(c))return c;return String(x).localeCompare(String(y))});
+ for(let i=0;i<result.length;i++){let v=result[i].values[order];if(v===null||v===undefined||String(v).trim()==='')throw Error('Missing observation order at row '+(i+1));}
+ return result.sort((a,b)=>{const x=a.values[order],y=b.values[order];if(Number.isFinite(Number(x))&&Number.isFinite(Number(y)))return Number(x)-Number(y);let n1=new Date(x).getTime(),n2=new Date(y).getTime();if(Number.isFinite(n1)&&Number.isFinite(n2))return n1-n2;return String(x).localeCompare(String(y),undefined,{numeric:true})});
 }
 function chart(title,values,center,upper,lower,labels=[]){
  const width=780,height=295,left=55,right=15,top=23,bottom=58,w=width-left-right,h=height-top-bottom,n=values.length;
