@@ -11,10 +11,15 @@ function empty(v){return v==null||String(v).trim()===''}
 export function parseTypedValue(raw,col){
   const type=col.type||'text';
   if(empty(raw)){if(col.required)throw Error(col.label+' is required.');return null}
-  const value=String(raw).trim();
+  let value=String(raw).trim();
+  if((type==='number'||type==='percent')&&/^-?\d+,\d+$/.test(value))value=value.replace(',','.');
+  if(type==='date'||type==='datetime'){
+   const eu=value.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+   if(eu)value=eu[3]+'-'+eu[2].padStart(2,'0')+'-'+eu[1].padStart(2,'0')+(type==='datetime'?'T'+(eu[4]||'00').padStart(2,'0')+':'+(eu[5]||'00'):'');
+  }
   if(type==='integer'){if(!/^-?\d+$/.test(value)||!Number.isSafeInteger(Number(value)))throw Error(col.label+': enter a whole number.');return Number(value)}
   if(type==='number'||type==='percent'){const n=Number(value);if(!Number.isFinite(n))throw Error(col.label+': enter a finite number.');if(type==='percent'&&(n<0||n>100))throw Error(col.label+': percentage must be between 0 and 100.');return n}
-  if(type==='date'){if(!/^\d{4}-\d{2}-\d{2}$/.test(value)||new Date(value).toISOString().slice(0,10)!==value)throw Error(col.label+': enter a valid ISO date (YYYY-MM-DD).');return value}
+  if(type==='date'){const d=new Date(value);if(!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(d.getTime())||d.toISOString().slice(0,10)!==value)throw Error(col.label+': enter a valid date.');return value}
   if(type==='datetime'){const d=new Date(value);if(!Number.isFinite(d.getTime()))throw Error(col.label+': enter a valid date and time.');return value}
   if(type==='boolean'){if(['true','yes','1','ja'].includes(value.toLowerCase()))return true;if(['false','no','0','nein'].includes(value.toLowerCase()))return false;throw Error(col.label+': use true or false.')}
   return value;
@@ -114,7 +119,7 @@ export async function handleBuilderAction(action,ctx){
   }
  }
  const fromMethod=!!draft.toolId;draft=null;ctx.closeModal();await ctx.loadProject();
- ctx.S.page='data';ctx.note('Named typed table saved in Supabase Data Library');ctx.render();
+ ctx.S.page=fromMethod&&ctx.S.tool?.phase?ctx.S.tool.phase:'data';ctx.note('Named typed table saved in Supabase — ready for observations');ctx.render();
 }
 export function renderDataLibrary(ctx){
  const {S,head,btn}=ctx,ds=S.dataset&&S.datasets.find(d=>d.id===S.dataset.id)||S.datasets[0];
