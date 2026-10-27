@@ -36,3 +36,37 @@ export function renderRunChartWorkspace(ctx){
  '</div>';
  return content;
 }
+
+export function computeRunChart(source,selection){
+ if(!selection.y)throw Error('Choose the numerical measurement column.');
+ let sorted=[...source].sort((a,b)=>(a.sequence_no||0)-(b.sequence_no||0));
+ if(selection.order){
+  for(let i=0;i<sorted.length;i++){let v=sorted[i].values[selection.order];if(v==null||String(v).trim()==='')throw Error('Timestamp or sequence value is missing at observation '+(i+1))}
+  sorted.sort((a,b)=>{
+   let x=a.values[selection.order],y=b.values[selection.order];
+   if(Number.isFinite(Number(x))&&Number.isFinite(Number(y)))return Number(x)-Number(y);
+   const dx=Date.parse(x),dy=Date.parse(y);if(Number.isFinite(dx)&&Number.isFinite(dy))return dx-dy;
+   return String(x).localeCompare(String(y),undefined,{numeric:true});
+  });
+ }
+ let clean=[];
+ sorted.forEach((r,i)=>{let v=r.values[selection.y];if(v==null||String(v).trim()==='')return;let y=Number(v);if(!Number.isFinite(y))throw Error('Non-numeric measurement at observation '+(i+1));clean.push({y,label:selection.order?String(r.values[selection.order]):String(i+1)})});
+ if(clean.length<2)throw Error('At least two saved numerical measurements are required to produce a Run Chart.');
+ const values=clean.map(p=>p.y),ordered=[...values].sort((a,b)=>a-b),median=ordered.length%2?ordered[(ordered.length-1)/2]:(ordered[ordered.length/2-1]+ordered[ordered.length/2])/2;
+ const avg=values.reduce((a,b)=>a+b,0)/values.length;
+ let runs=0,last=0,maxShift=0,shift=0;
+ for(const y of values){const sign=Math.sign(y-median);if(!sign)continue;if(sign!==last){runs++;shift=1}else shift++;maxShift=Math.max(maxShift,shift);last=sign;}
+ const w=850,h=350,L=74,R=28,T=28,B=75,dy=h-T-B;
+ const vmin=Math.min(median,...values),vmax=Math.max(median,...values),span=vmax-vmin||1,lo=vmin-span*.16,hi=vmax+span*.16;
+ const px=i=>L+i*(w-L-R)/Math.max(1,clean.length-1),py=y=>T+(hi-y)*dy/(hi-lo);
+ const xTicks=[...new Set([0,Math.round((clean.length-1)/4),Math.round((clean.length-1)/2),Math.round((clean.length-1)*.75),clean.length-1])];
+ const ticks=Array.from({length:5},(_,i)=>lo+(hi-lo)*i/4);
+ let svg='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="Run chart: measured values by time or sequence; blue measurement line and green median reference line" style="width:100%;max-width:900px">';
+ svg+=ticks.map(t=>'<line x1="'+L+'" x2="'+(w-R)+'" y1="'+py(t)+'" y2="'+py(t)+'" stroke="#e5ecf4"/><text x="'+(L-12)+'" y="'+(py(t)+4)+'" font-size="12" fill="#708099" text-anchor="end">'+esc(Number(t.toPrecision(4)))+'</text>').join('');
+ svg+='<line x1="'+L+'" x2="'+(w-R)+'" y1="'+py(median)+'" y2="'+py(median)+'" stroke="#168d75" stroke-width="2" stroke-dasharray="7 6"/><text x="'+(w-R)+'" y="'+(py(median)-7)+'" font-size="12" text-anchor="end" fill="#168d75">Median '+esc(median.toFixed(3))+'</text>';
+ svg+='<polyline fill="none" stroke="#3266ad" stroke-width="3" points="'+values.map((v,i)=>px(i)+','+py(v)).join(' ')+'"/>';
+ svg+=clean.map((p,i)=>'<circle cx="'+px(i)+'" cy="'+py(p.y)+'" r="4" fill="#3266ad"><title>'+esc(p.label)+': '+esc(p.y)+'</title></circle>').join('');
+ svg+=xTicks.map(i=>'<text x="'+px(i)+'" y="'+(h-43)+'" text-anchor="middle" fill="#687d99" font-size="10">'+esc(clean[i].label.slice(0,18))+'</text>').join('');
+ svg+='<text x="'+(w/2)+'" y="'+(h-12)+'" font-size="12" text-anchor="middle" fill="#506982">'+(selection.order?'Selected observation time / order':'Saved observation sequence')+'</text></svg>';
+ return {summary:'Run Chart: saved observations in process order',metrics:{observations:values.length,median,mean:avg,minimum:Math.min(...values),maximum:Math.max(...values),runs_ignoring_median_ties:runs,longest_same_side_sequence:maxShift},svg,at:new Date().toISOString(),warning:'Run charts use a median reference line; this is NOT a Shewhart control chart. Consecutive sequences and run counts are descriptive screening information. Validate time order, sampling and special-cause patterns before concluding that the process changed.'}
+}
