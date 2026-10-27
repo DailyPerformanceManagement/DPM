@@ -97,9 +97,11 @@ export async function handleBuilderAction(action,ctx){
  if(new Set(draft.columns.map(c=>c.label.toLowerCase().trim())).size!==draft.columns.length)throw Error('Column titles must be unique.');
  if(draft.id){
   const old=ctx.S.datasets.find(d=>d.id===draft.id);
-  for(const col of draft.columns){const before=old.columns.find(c=>c.key===col.key);if(before&&before.type!==col.type){
+  for(const col of draft.columns){const before=old.columns.find(c=>c.key===col.key);
+   if(before&&(before.type!==col.type||(!before.required&&col.required))){
     let rows=ctx.S.rows.filter(r=>r.dataset_id===old.id);
-    for(const r of rows)try{parseTypedValue(r.values[col.key],col)}catch(e){throw Error('Cannot change '+col.label+' to '+col.type+': '+e.message+' (existing observations)')}
+    for(const r of rows)try{parseTypedValue(r.values[col.key],col)}catch(e){throw Error('Cannot change '+col.label+' requirements: '+e.message+' (existing observations)')}
+   }
   }}
   await ctx.request('datasets','update',{id:draft.id,data:{name:draft.name.trim(),description:draft.description,columns:draft.columns}});
   ctx.S.dataset= {...old,name:draft.name.trim(),description:draft.description,columns:draft.columns};
