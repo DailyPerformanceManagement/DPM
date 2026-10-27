@@ -2,6 +2,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.58.0?bundle';
 import {openBuilder,handleBuilderAction,renderDataLibrary,parseTypedValue,rowFromInputs,suggestColumnType} from './data-library.js';
 import {isSPC,methodPanel,methodPolicy,computeSPC} from './statistical-methods.js';
+import {renderRunChartWorkspace,computeRunChart,filledRunDraft,clearRunDraft,updateRunDraft,addRunDraftRows,resetRunDraft} from './run-chart.js';
 const SB_URL='https://gibsgwfuvuxfgicpvybm.supabase.co';
 const SB_KEY='sb_publishable_hSQ_KrXAJjOYpZuCW8Q_0Q_2tZVC_g6';
 const db=createClient(SB_URL,SB_KEY);
@@ -79,7 +80,26 @@ function uid(){return crypto.randomUUID()}
 function blobDownload(name,text,type='text/plain'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([text],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),3000)}
 function csvCell(v){const s=String(v??'');return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
 function csvSerialize(data){return data.map(row=>row.map(csvCell).join(',')).join('\r\n')}
-function parseCSV(t){const out=[],row=[];let cell='',quote=false;for(let i=0;i<t.length;i++){let c=t[i];if(quote){if(c==='"'&&t[i+1]==='"'){cell+='"';i++}else if(c==='"')quote=false;else cell+=c}else if(c==='"')quote=true;else if(c===','){row.push(cell);cell=''}else if(c==='\n'){row.push(cell.replace(/\r$/,''));out.push(row.splice(0));cell=''}else cell+=c}if(cell.length||row.length){row.push(cell);out.push(row)}return out.filter(r=>r.some(v=>v.trim()))}
+function detectCSVDelimiter(t){
+ const first=String(t).replace(/^\uFEFF/,'').split(/\r?\n/).find(x=>x.trim())||'';
+ const choices=[',',';','\t'];let best=',',highest=-1;
+ for(const sep of choices){let n=0,quoted=false;for(let i=0;i<first.length;i++){let ch=first[i];if(ch==='"'){if(quoted&&first[i+1]==='"')i++;else quoted=!quoted}else if(ch===sep&&!quoted)n++}if(n>highest){highest=n;best=sep}}
+ return best
+}
+function parseCSV(text){
+ const t=String(text).replace(/^\uFEFF/,'');const sep=detectCSVDelimiter(t),out=[],row=[];let cell='',quote=false;
+ for(let i=0;i<t.length;i++){
+  let c=t[i];if(quote){if(c==='"'&&t[i+1]==='"'){cell+='"';i++}else if(c==='"')quote=false;else cell+=c}
+  else if(c==='"')quote=true;
+  else if(c===sep){row.push(cell);cell=''}
+  else if(c==='\n'){row.push(cell.replace(/\r$/,''));out.push([...row]);row.length=0;cell=''}
+  else cell+=c;
+ }
+ if(quote)throw Error('CSV has an unmatched double quote. Check the file format.');
+ if(cell.length||row.length){row.push(cell);out.push([...row])}
+ return out.filter(r=>r.some(v=>String(v).trim()))
+}
+
 const mean=x=>x.reduce((a,b)=>a+b,0)/x.length;
 const stdev=x=>Math.sqrt(x.reduce((a,v)=>a+(v-mean(x))**2,0)/(x.length-1));
 const sum=x=>x.reduce((a,b)=>a+b,0);
@@ -145,14 +165,14 @@ function renderTool(){const t=S.tool,m=method(t.method_key),c=S.editor||t.conten
  if(m.kind==='form')data+='<div class="formgrid section">'+cols.map(f=>'<div class="field '+(f.type==='textarea'?'wide':'')+'"><label>'+esc(f.label)+'</label>'+(f.type==='textarea'?'<textarea data-editor-field="'+esc(f.key)+'">'+esc(c.fields?.[f.key]||'')+'</textarea>':'<input data-editor-field="'+esc(f.key)+'" type="'+esc(f.type)+'" value="'+esc(c.fields?.[f.key]||'')+'">')+'</div>').join('')+'</div>';
 
  if(m.kind==='calc'){
-   data+=methodPanel(m,{S,select,input,btn});
-   if(t.result?.summary){
+   data+=m.key==='run'?renderRunChartWorkspace({S,btn,select}):methodPanel(m,{S,select,input,btn});
+   if(t.result?.summary&&t.dataset_id===c.dataset_id){
      const metrics=Object.entries(t.result.metrics||{}).filter(([k,v])=>!Array.isArray(v)&&typeof v!=='object')
       .map(([k,v])=>'<div class="card stat"><span>'+esc(k.replaceAll('_',' '))+'</span><strong style="font-size:18px">'+esc(typeof v==='number'?fmt(v):v)+'</strong></div>').join('');
      const arrays=Object.entries(t.result.metrics||{}).filter(([k,v])=>Array.isArray(v))
       .map(([k,v])=>'<details class="section"><summary>'+esc(k.replaceAll('_',' '))+' · '+v.length+' records</summary><div class="tablewrap"><table class="table"><tbody>'+
          v.slice(0,200).map((value,i)=>'<tr><td>#'+(i+1)+'</td><td>'+esc(typeof value==='object'?JSON.stringify(value):typeof value==='number'?fmt(value):value)+'</td></tr>').join('')+'</tbody></table></div></details>').join('');
-     data+='<div class="card pad section"><div class="row"><div><div class="caps">Saved calculation on project data</div><h3>'+esc(t.result.summary)+'</h3><p class="muted tiny">Run on '+date(t.result.at)+' · Saved table: '+esc(S.datasets.find(d=>d.id===t.dataset_id)?.name||'Not available')+'</p></div>'+badge(t.status)+'</div><div class="grid cols3 section">'+metrics+'</div>'+
+     data+='<div class="card pad section"><div class="row"><div><div class="caps">Saved calculation on project data</div><h3>'+esc(t.result.summary)+'</h3><p class="muted tiny">Snapshot from '+date(t.result.at)+' · Recalculate if observations changed · Saved table: '+esc(S.datasets.find(d=>d.id===t.dataset_id)?.name||'Not available')+'</p></div>'+badge(t.status)+'</div><div class="grid cols3 section">'+metrics+'</div>'+
        (t.result.svg?'<div class="chartarea section">'+t.result.svg+'</div>':'')+arrays+
        (t.result.warning?'<div class="notice warn section">'+esc(t.result.warning)+'</div>':'')+'</div>';
    }
@@ -174,7 +194,7 @@ function datasetForm(){modal('<h2>Create dataset</h2><form id="dataset-form">'+i
 function actionForm(a){a=a||{};modal('<h2>'+(a.id?'Edit action':'Create action')+'</h2><form id="action-form" data-id="'+esc(a.id||'')+'"><div class="formgrid">'+input('Action title','title',a.title||'')+input('Owner','owner_name',a.owner_name||'')+input('Due date','due_date',a.due_date||'','date')+select('Phase','phase',P.map(p=>[p,p]),a.phase||S.phase)+select('Status','status',[['todo','To do'],['doing','In progress'],['done','Done']],a.status||'todo')+select('Related method / evidence','tool_id',[['','Not linked'],...S.tools.map(t=>[t.id,t.phase+' · '+t.title])],a.tool_id||'')+select('Priority','priority',[['low','Low'],['medium','Medium'],['high','High']],a.priority||'medium')+'<div class="wide">'+input('Notes / evidence','notes',a.notes||'','textarea')+'</div></div><div class="section"><button class="btn primary">Save action</button></div></form>')}
 function fileModal(){modal('<h2>Upload project file</h2><form id="file-form">'+input('Description','title','')+'<div class="field"><label>File (max 10 MB)</label><input type="file" name="file" required></div><div class="section"><button class="btn primary">Upload to private storage</button></div></form>')}
 async function persistTool(status){if(!S.tool)return;let updates={content:S.editor||{},conclusion:$('#tool-conclusion')?.value||'',status:status||S.tool.status};let t=await request('tools','update',{id:S.tool.id,data:updates});S.tool=t;S.tools=S.tools.map(a=>a.id===t.id?t:a);S.editor=structuredClone(t.content);note('Tool saved to Supabase');render()}
-async function runCalc(){if(!S.tool)return;let c=S.editor||{};let ds=S.datasets.find(d=>d.id===c.dataset_id);if(!ds)throw Error('Select a saved dataset. Each analysis must explicitly name its source table.');let policy=methodPolicy(S.tool.method_key);if(policy){for(const [field,label,type] of policy.roles){if(!type.endsWith('?')&&!c[field])throw Error('Select '+label+' before calculating.');}}let source=S.rows.filter(r=>r.dataset_id===ds.id);if(!source.length)throw Error('The chosen data table has no saved observations. Add observations in Data Library.');if(c.order)source.sort((a,b)=>String(a.values[c.order]??'').localeCompare(String(b.values[c.order]??''),undefined,{numeric:true}));let res=isSPC(S.tool.method_key)?computeSPC(S.tool.method_key,source,c):calculate(S.tool.method_key,source,c);let t=await request('tools','update',{id:S.tool.id,data:{dataset_id:ds.id,content:c,result:res,conclusion:$('#tool-conclusion')?.value||'',status:'completed'}});S.tool=t;S.tools=S.tools.map(a=>a.id===t.id?t:a);S.editor=structuredClone(t.content);note('Calculation and inputs saved');render()}
+async function runCalc(){if(!S.tool)return;let c=S.editor||{};let ds=S.datasets.find(d=>d.id===c.dataset_id);if(!ds)throw Error('Select a saved dataset. Each analysis must explicitly name its source table.');let policy=methodPolicy(S.tool.method_key);if(policy){for(const [field,label,type] of policy.roles){if(!type.endsWith('?')&&!c[field])throw Error('Select '+label+' before calculating.');}}let source=S.rows.filter(r=>r.dataset_id===ds.id);if(!source.length)throw Error('The chosen data table has no saved observations. Add observations in Data Library.');if(c.order)source.sort((a,b)=>String(a.values[c.order]??'').localeCompare(String(b.values[c.order]??''),undefined,{numeric:true}));let res=S.tool.method_key==='run'?computeRunChart(source,c):isSPC(S.tool.method_key)?computeSPC(S.tool.method_key,source,c):calculate(S.tool.method_key,source,c);let t=await request('tools','update',{id:S.tool.id,data:{dataset_id:ds.id,content:c,result:res,conclusion:$('#tool-conclusion')?.value||'',status:'completed'}});S.tool=t;S.tools=S.tools.map(a=>a.id===t.id?t:a);S.editor=structuredClone(t.content);note('Calculation and inputs saved');render()}
 function csvFromDataset(ds){let rs=S.rows.filter(r=>r.dataset_id===ds.id),cols=ds.columns;return csvSerialize([cols.map(c=>c.label),...rs.map(r=>cols.map(c=>r.values[c.key]))])}
 async function importCSV(file,ds){
  let rows=parseCSV(await file.text());if(rows.length<2)throw Error('CSV must have a header and at least one data row.');
@@ -183,7 +203,7 @@ async function importCSV(file,ds){
  if(rows.length>5000)throw Error('This version imports up to 5,000 rows at once. Split this CSV to avoid incomplete imports.');
  let cols,sourceRows=rows;
  if(ds){
-  const indexes=ds.columns.map(c=>headers.indexOf(c.label));if(indexes.some(i=>i<0))throw Error('The CSV must contain all columns of the selected saved table, matched by title.');
+  const indexes=ds.columns.map(c=>headers.findIndex(h=>h.toLocaleLowerCase().trim()===c.label.toLocaleLowerCase().trim()));if(indexes.some(i=>i<0))throw Error('CSV headers must match the saved table’s column titles (case-insensitive). Missing: '+ds.columns.filter((c,i)=>indexes[i]<0).map(c=>c.label).join(', '));
   cols=ds.columns;sourceRows=rows.map(r=>indexes.map(i=>r[i]??''));
  }else{
   cols=headers.map((label,i)=>({key:'csv_'+i,label,type:suggestColumnType(rows.slice(0,80).map(r=>r[i])),required:false,unit:''}));
@@ -192,7 +212,7 @@ async function importCSV(file,ds){
  if(!ds)ds=await request('datasets','insert',{project_id:S.project.id,name:file.name.replace(/\.csv$/i,''),columns:cols,metadata:{origin:'csv',filename:file.name}});
  let payload=values.map(v=>({project_id:S.project.id,dataset_id:ds.id,values:v}));
  for(let i=0;i<payload.length;i+=200){let r=await db.from(A.rows).insert(payload.slice(i,i+200));if(r.error)throw r.error}
- S.dataset=ds;await loadProject();S.page='data';note(payload.length+' typed CSV observations stored in Data Library');render()
+ S.dataset=ds;await loadProject();if(S.tool?.method_key!=='run')S.page='data';note(payload.length+' CSV observations saved to '+ds.name);render()
 }
 function reportHtml(){let body='<h1>'+esc(S.project.name)+'</h1><p><b>Objective:</b> '+esc(S.project.objective)+'</p><p><b>Location:</b> '+esc(S.project.location)+'</p>';for(let p of P){body+='<h2>'+esc(p)+'</h2><p>'+esc(S.phases.find(a=>a.phase===p)?.conclusion||'')+'</p>';for(let t of S.tools.filter(x=>x.phase===p)){body+='<h3>'+esc(t.title)+'</h3><p>'+esc(t.conclusion)+'</p><pre>'+esc(JSON.stringify(t.result?.metrics||t.content,null,2))+'</pre>'}}return '<!doctype html><html><head><meta charset="utf-8"><title>'+esc(S.project.name)+'</title><style>body{font:15px/1.5 Arial;max-width:860px;margin:50px auto;color:#15263f}h2{color:#315fb3;border-bottom:1px solid #ddd}pre{white-space:pre-wrap;background:#f7f9fc;padding:12px}</style></head><body>'+body+'</body></html>'}
 async function refresh(){await loadProjects();await loadProject();render()}
@@ -214,10 +234,24 @@ async function command(code){
  if(code==='logout'){await db.auth.signOut();S.user=null;S.project=null;authView();return}
  if(code==='go-report'){S.page='report';return render()}
  if(code==='go-data'){S.page='data';S.tool=null;return render()}
+ if(code==='run-edit-schema'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');return openBuilder({S,modal,btn,request,loadProject,render,note,closeModal},ds)}
+ if(code==='run-add-draft-rows'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');addRunDraftRows(ds.columns);return render()}
+ if(code==='run-save-observations'){
+   if(!S.tool||S.tool.method_key!=='run')throw Error('Open a Run Chart tool first.');
+   let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a saved table first.');
+   const values=filledRunDraft(ds);if(!values.length)throw Error('Enter at least one measurement row, then press Save.');
+   const payload=values.map(values=>({project_id:S.project.id,dataset_id:ds.id,values}));
+   let r=await db.from(A.rows).insert(payload);if(r.error)throw r.error;
+   let tool=await request('tools','update',{id:S.tool.id,data:{dataset_id:ds.id,content:{...S.editor,dataset_id:ds.id}}});S.tool=tool;S.tools=S.tools.map(t=>t.id===tool.id?tool:t);S.editor=structuredClone(tool.content);
+   clearRunDraft(ds);await loadRows();note(values.length+' observation(s) saved into '+ds.name);return render();
+ }
+ if(code==='run-export-csv'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');return blobDownload(slug(ds.name)+'.csv',csvFromDataset(ds),'text/csv')}
+ if(code==='run-import-csv'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');let el=document.createElement('input');el.type='file';el.accept='.csv,text/csv,text/plain';el.onchange=async()=>{try{if(el.files?.length)await importCSV(el.files[0],ds)}catch(err){alert('Import failed: '+err.message)}};el.click();return}
+ 
  if(code.startsWith('open:')){S.project=S.projects.find(p=>p.id===code.slice(5));S.page='overview';S.tool=null;await loadProject();return render()}
- if(code.startsWith('tool:')){S.tool=S.tools.find(t=>t.id===code.slice(5));S.editor=structuredClone(S.tool.content||{});S.page=S.tool.phase;return render()}
+ if(code.startsWith('tool:')){S.tool=S.tools.find(t=>t.id===code.slice(5));S.editor=structuredClone(S.tool.content||{});S.page=S.tool.phase;resetRunDraft();return render()}
  if(code.startsWith('add-tool:')){let m=method(code.slice(9));let t=await request('tools','insert',{project_id:S.project.id,phase:m.phase,method_key:m.key,title:m.title,content:m.kind==='table'?{rows:[]}:m.kind==='form'?{fields:{}}:{}});S.tools.push(t);S.tool=t;S.editor=structuredClone(t.content);S.page=m.phase;note('New method instance created');return render()}
- if(code==='close-tool'){S.tool=null;S.editor=null;return render()}
+ if(code==='close-tool'){S.tool=null;S.editor=null;resetRunDraft();return render()}
  if(code.startsWith('delete-tool:')){let id=code.slice(12);if(!confirm('Delete this method instance and saved results?'))return;await request('tools','delete',{id});S.tools=S.tools.filter(t=>t.id!==id);S.tool=null;S.editor=null;return render()}
  if(code==='add-workbook-row'){let m=method(S.tool.method_key);(S.editor.rows??=[]).push(Object.fromEntries(m.columns.map(f=>[f.key,''])));return render()}
  if(code.startsWith('remove-row:')){S.editor.rows.splice(Number(code.slice(11)),1);return render()}
@@ -245,7 +279,7 @@ document.addEventListener('click',async e=>{
  e.preventDefault();try{if(nav){S.page=nav.dataset.nav;S.tool=null;S.editor=null;S.search='';render()}else if(project)await command('open:'+project.dataset.openProject);else if(act)await command(act.dataset.act)}catch(err){alert('Could not complete action: '+err.message);console.error(err)}
 });
 document.addEventListener('input',e=>{
- const t=e.target;if(t.dataset.editorField&&S.editor){S.editor.fields??={};S.editor.fields[t.dataset.editorField]=t.value}
+ const t=e.target;updateRunDraft(t);if(t.dataset.editorField&&S.editor){S.editor.fields??={};S.editor.fields[t.dataset.editorField]=t.value}
  if(t.dataset.editorRow!==undefined&&S.editor){S.editor.rows[Number(t.dataset.editorRow)][t.dataset.editorCol]=t.value}
  if(t.id==='method-search'){S.search=t.value;let pos=t.selectionStart;render();let newEl=$('#method-search');newEl?.focus();newEl?.setSelectionRange(pos,pos)}
 });
