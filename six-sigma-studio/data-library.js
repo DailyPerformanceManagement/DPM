@@ -102,7 +102,7 @@ export async function handleBuilderAction(action,ctx){
     let rows=ctx.S.rows.filter(r=>r.dataset_id===old.id);
     for(const r of rows)try{parseTypedValue(r.values[col.key],col)}catch(e){throw Error('Cannot change '+col.label+' requirements: '+e.message+' (existing observations)')}
    }
-  }}
+  }
   await ctx.request('datasets','update',{id:draft.id,data:{name:draft.name.trim(),description:draft.description,columns:draft.columns}});
   ctx.S.dataset= {...old,name:draft.name.trim(),description:draft.description,columns:draft.columns};
  }else{
