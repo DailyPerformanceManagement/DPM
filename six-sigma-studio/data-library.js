@@ -29,10 +29,10 @@ export function rowFromInputs(ds,selector,scope=document){
 }
 export function suggestColumnType(samples){
  const vals=samples.map(x=>String(x??'').trim()).filter(Boolean);if(!vals.length)return 'text';
- if(vals.every(v=>/^0\d+$/.test(v)===false&&/^-?\d+$/.test(v)&&Number.isSafeInteger(Number(v))))return 'integer';
- if(vals.every(v=>!/^0\d+$/.test(v)&&Number.isFinite(Number(v))))return 'number';
- if(vals.every(v=>/^\d{4}-\d{2}-\d{2}$/.test(v)&&!Number.isNaN(Date.parse(v))))return 'date';
- if(vals.every(v=>/^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}/.test(v)&&!Number.isNaN(Date.parse(v))))return 'datetime';
+ if(vals.every(v=>(/^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}/.test(v)||/^\d{1,2}\.\d{1,2}\.\d{4}[ T]\d{1,2}:\d{2}/.test(v))&&!Number.isNaN(Date.parse(v)||Date.parse(v.slice(0,10)))))return 'datetime';
+ if(vals.every(v=>/^\d{4}-\d{2}-\d{2}$/.test(v)||/^\d{1,2}\.\d{1,2}\.\d{4}$/.test(v)))return 'date';
+ if(vals.every(v=>!/^0\d+$/.test(v)&&/^-?\d+$/.test(v)&&Number.isSafeInteger(Number(v))))return 'integer';
+ if(vals.every(v=>!/^0\d+$/.test(v)&&Number.isFinite(Number(v.replace(',','.')))))return 'number';
  if(vals.every(v=>/^(true|false|yes|no|ja|nein)$/i.test(v)))return 'boolean';
  return 'category'
 }
