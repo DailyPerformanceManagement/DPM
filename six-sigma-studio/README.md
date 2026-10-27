@@ -20,6 +20,26 @@ Open https://six-sigma-studio.vercel.app/ in a web browser. Sign in with your Su
 
 You can also serve `index.html`, `styles.css`, and `app.js` through a local HTTP server. This is *not* a browser-local mock application: successful saves use authenticated requests to Postgres.
 
+## Update: Typed Data Library & method-specific SPC (27 Oct 2026)
+
+The Data Hub is now a **saved Project Data Library**, not a generic X/Y table.
+
+- Design a table from an empty schema: choose the table name, description, each column title, type, unit and whether a value is required.
+- Column types: text, category, decimal measurement, integer/count, percentage, date, date-time, Boolean.
+- Enter observations manually and save them in PostgreSQL; edit saved cells with type validation; import/export CSV. Edit existing table schemas without silently deleting populated columns.
+- Select the same named table independently in multiple method instances. Data are not duplicated in tool files.
+- Each statistical method uses its own dataset requirements, column labels and input mapping.
+- Select **Create compatible table** inside an SPC method to begin with the right headers.
+- I–MR requires sequenced continuous individual measurements and plots both I and MR charts.
+- X-bar/R requires equal-size rational subgroups with individual numeric measurements and plots both mean and range charts.
+- p chart requires defective units and inspected units, including varying subgroup sizes with varying upper/lower limits.
+- np chart requires a **constant** sample size. c chart requires equal inspection opportunity. u chart uses counts and varying exposure denominators.
+- Pareto, tests, normality, DPMO, regression, etc. expose distinct roles instead of forcing irrelevant fields.
+- SPC input validation catches blank counts, noninteger counts, zero denominators, impossible defective counts, and incompatible subgroup structures.
+- Supabase now stores a stable observation sequence to preserve chart order when an explicit date/time column is not mapped.
+
+Note: Table libraries are reusable **within each project**, not globally shared across unrelated projects. The first 5,000 rows per project are loaded by this client version; large-data pagination is still needed. Statistical chart limits are computed, but full Western Electric/Nelson signal suites, measurement-system studies, and formal statistical validation are future work.
+
 ## What is implemented
 
 - Select existing projects from the command bar; create/edit a project and record site/location.
