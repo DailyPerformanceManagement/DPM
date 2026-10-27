@@ -3,7 +3,7 @@
  * SPC control charts are implemented separately from document workbooks and generic tests.
  */
 const numTypes=new Set(['number','integer','percent']);
-const categoryTypes=new Set(['text','category','boolean','date','datetime']);
+const categoryTypes=new Set(['text','category','integer','boolean','date','datetime']);
 const timeTypes=new Set(['date','datetime','integer','number']);
 const SPC=new Set(['imr_m','imr_c','xbar','pchart','npchart','cchart','uchart']);
 const policies={
