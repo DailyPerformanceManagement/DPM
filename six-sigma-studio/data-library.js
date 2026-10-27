@@ -81,7 +81,7 @@ function viewDraft(ctx){
  '<div class="buttons section">'+btn('Save table in Data Library','builder-save','primary')+btn('Cancel','builder-cancel')+'</div>')
 }
 export function openBuilder(ctx,existing=null,templateKey=null){
- if(existing){draft={id:existing.id,name:existing.name,description:existing.description||'',columns:structuredClone(existing.columns),toolId:null}}
+ if(existing){draft={id:existing.id,name:existing.name,description:existing.description||'',columns:structuredClone(existing.columns),toolId:ctx.S.tool?.phase===ctx.S.page?ctx.S.tool.id:null}}
  else {let toolId=ctx.S.tool?.id||null;draft={id:null,name:templateKey?(ctx.S.tool?.title||templateKey)+' · Data': '',description:'',columns:schemaTemplates(templateKey),toolId}}
  viewDraft(ctx)
 }
