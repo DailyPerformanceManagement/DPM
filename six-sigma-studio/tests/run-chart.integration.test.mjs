@@ -94,3 +94,18 @@ assert.equal(suggestColumnType(['27.10.2026 09:00','27.10.2026 10:00']),'datetim
 assert.equal(suggestColumnType(['23,5','24,1']),'number');
 assert.equal(parseTypedValue('23,5',{type:'number',label:'Measurement'}),23.5);
 console.log('PASS: German Excel semicolon CSV and comma decimal typing');
+// Exercise the actual CSV import command, not just the delimiter/parser utilities.
+context.testImportFile={
+ name:'german-measurements.csv',
+ text:async()=> 'Observed at;Measurement;Operator\n27.10.2026 12:00;25,2;C\n27.10.2026 13:00;26,4;D\n'
+};
+context.loadProject=async()=>{S.rows=[...store];S.tools=[record]};
+await vm.runInContext("importCSV(testImportFile, S.datasets[0])",context);
+assert.equal(store.length,5);
+assert.equal(S.rows.length,5);
+assert.equal(store[3].values.measurement,25.2);
+assert.equal(store[3].values.time,'2026-10-27T12:00');
+assert.equal(S.page,'Measure');
+await vm.runInContext("command('calculate')",context);
+assert.equal(record.result.metrics.observations,5);
+console.log('PASS: real CSV import command inserts typed rows, returns to Run Chart and calculates all five observations');
