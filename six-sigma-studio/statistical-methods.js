@@ -48,6 +48,7 @@ export function methodPanel(method,ctx){
  let required=p.roles.filter(x=>!x[2].endsWith('?')).map(x=>x[0]);let missing=required.filter(x=>!c[x]);if(missing.length)html+='<div class="notice warn section">Required column mappings are missing. Select the roles above, then click Calculate. Nothing will be estimated from a different column.</div>';
  else html+='<div class="notice section">Ready for data validation. Press Calculate; the tool checks sample sizes, numeric counts, denominators and chart-specific restrictions before saving a result.</div>';
  }
+ html+='<div class="buttons section">'+btn('Calculate from saved observations','calculate','primary')+'</div>';
  return html;
 }
 function numeric(v,name){if(v===null||v===undefined||String(v).trim()==='')throw Error(name+' has a blank value.');let n=Number(v);if(!Number.isFinite(n))throw Error(name+' must contain finite numerical values.');return n}
