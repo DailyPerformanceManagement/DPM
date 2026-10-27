@@ -20,6 +20,21 @@ Open https://six-sigma-studio.vercel.app/ in a web browser. Sign in with your Su
 
 You can also serve `index.html`, `styles.css`, and `app.js` through a local HTTP server. This is *not* a browser-local mock application: successful saves use authenticated requests to Postgres.
 
+## Update: Run Chart workflow repair (27 Oct 2026)
+
+The **Measure → Run Chart** method has its own working interface, not the generic input controls:
+
+1. Select a named saved project table, or use **Create Run Chart data table** to create a table with time, measurement, and optional grouping fields.
+2. Enter several observations **directly inside Run Chart** (no import required). The manual-entry grid supports all columns, including time/date, measurement, and optional text/category fields.
+3. Click **Save entered observations** to insert typed rows in Supabase. Saved observations appear immediately below and can be edited.
+4. Choose the **Y measurement** and optional **X date/time/sequence**, and press **Generate Run Chart**. The result plots chronological observations against the **median**, with labeled dates and descriptive run metrics.
+5. Close and reopen the Run Chart method: it keeps its selected dataset and saved calculation, and retrieves saved observations from the project database.
+6. **Import CSV to this table** accepts comma-, semicolon-, or tab-separated data with quoted fields. Numeric decimal commas and German dates (e.g. 27.10.2026 09:00) are parsed and validated against the named table schema.
+
+These actions were tested using a **test-only in-memory Supabase adapter**, including the app command handler for inserting rows, chart calculation, reopening the method, and the actual CSV importer. Tests: `node --test six-sigma-studio/tests/run-chart.integration.test.mjs`. They do not replace a signed-in live-browser test against the production database.
+
+**Methodology:** A Run Chart uses a median reference line and chronological order. It is **not an SPC I–MR chart with control limits**; choose I–MR separately for Shewhart limits and moving ranges.
+
 ## Update: Typed Data Library & method-specific SPC (27 Oct 2026)
 
 The Data Hub is now a **saved Project Data Library**, not a generic X/Y table.
