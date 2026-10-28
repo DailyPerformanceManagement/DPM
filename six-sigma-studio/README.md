@@ -4,6 +4,14 @@
 
 Six Sigma Studio is a standalone, authenticated Lean Six Sigma project workspace. Its code lives in this isolated subdirectory of the existing DPM GitHub repository; the deployed application is a **separate Vercel project**, and its database records are isolated in their own Supabase tables.
 
+## Bischof+Klein-inspired dashboard theme (28 Oct 2026)
+
+The **live Six Sigma Studio dashboard** now imports `bk-theme.css` after the existing stylesheet and activates it through `<html data-theme="bk">`. The project portfolio, navigation groups, KPI and method cards, project overview, phase stages, tables, forms, and authentication screens use the same navy / blue / green visual system. The overview values remain **connected to actual project state**; no presentation-only sample data have been injected.
+
+This is an **unofficial visual interpretation** of public Bischof+Klein branding, not the approved corporate identity manual. The B+K mark is typographic and should be replaced with approved company assets when provided. Nothing about Supabase authentication, tables, data, calculations, analysis logic or project actions was changed for the theme.
+
+UI regression tests: `node --test tests/bk-theme.smoke.test.mjs tests/run-chart.integration.test.mjs`.
+
 ## Architecture
 
 - Frontend: HTML, CSS, ES modules and pinned Supabase JavaScript client
