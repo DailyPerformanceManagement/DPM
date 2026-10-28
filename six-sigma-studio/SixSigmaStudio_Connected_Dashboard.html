@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#14263e">
+<title>Six Sigma Studio | Connected Single-File Dashboard</title>
+<!--
+SIX SIGMA STUDIO — CONNECTED SINGLE-FILE DASHBOARD
+Source: https://github.com/DailyPerformanceManagement/DPM/tree/main/six-sigma-studio
+Generated from the currently connected application source. HTML, CSS and local app modules are embedded.
+The Supabase JavaScript client is loaded over the internet from esm.sh.
+User records remain in Supabase PostgreSQL under owner-based row-level security.
+This file is not an offline database; use HTTPS hosting or a local web server for the most reliable authentication.
+Do NOT put Supabase service_role or secret keys in this browser file.
+-->
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--muted:#65768d;--text:#192b43;--border:#dfe6ef;--primary:#315fb3;--primaryLight:#eef4ff;--teal:#118d77;--pale:#e9f8f3;--danger:#b84351;--sidebar:#14253d;--shadow:0 4px 20px #1a344d0b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}a{color:var(--primary)}h1,h2,h3,p{margin-top:0}h1{font-size:29px;line-height:1.2;letter-spacing:-.8px;margin-bottom:6px}h2{font-size:20px;letter-spacing:-.4px}h3{font-size:15px}.muted{color:var(--muted)}.small{font-size:12px}.tiny{font-size:11px}.caps{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:var(--primary)}.app{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100vh}.side{background:var(--sidebar);color:#fff;padding:20px 13px;position:sticky;top:0;height:100vh;overflow:auto}.brand{display:flex;gap:10px;align-items:center;padding:6px 12px 23px}.brand .logo{display:grid;place-items:center;background:linear-gradient(135deg,#64c1de,#5a70e1);font-weight:900;color:#fff;width:39px;height:39px;border-radius:11px;font-size:22px}.brand strong{font-size:16px}.brand small{display:block;color:#a7bad2;font-size:10px}.nav-label{color:#7f96b6;letter-spacing:1.3px;font-size:10px;font-weight:800;margin:19px 12px 6px;text-transform:uppercase}.nav{width:100%;display:flex;text-align:left;align-items:center;gap:10px;color:#bac8dc;background:transparent;border:0;padding:10px 12px;border-radius:9px}.nav:hover{color:#fff;background:#243e5c}.nav.active{color:#fff;background:#314c72;font-weight:750}.nav span:first-child{width:21px;text-align:center}.sidefoot{color:#a8bed5;margin-top:35px;padding:12px;font-size:11px;border-top:1px solid #354c65}.workspace{min-width:0}.top{height:72px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border-bottom:1px solid var(--border);padding:0 32px;position:sticky;top:0;z-index:7}.top small{color:var(--muted)}.top .title{font-size:15px;font-weight:800;display:block}.top select{max-width:260px}.top-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.main{max-width:1520px;padding:30px 34px 80px;margin:auto}.pagehead{display:flex;justify-content:space-between;align-items:start;gap:14px;margin-bottom:22px}.pagehead p{color:var(--muted);margin-bottom:0}.btn{background:var(--card);border:1px solid var(--border);border-radius:9px;color:var(--text);padding:9px 14px;font-size:12px;font-weight:750;display:inline-flex;justify-content:center;align-items:center;gap:7px}.btn:hover{background:#f3f6fa}.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn.primary:hover{background:#244e9a}.btn.danger{color:var(--danger)}.btn.small{padding:6px 10px;font-size:11px}.buttons{display:flex;flex-wrap:wrap;gap:8px}.card{background:var(--card);border:1px solid var(--border);border-radius:13px;box-shadow:var(--shadow)}.pad{padding:22px}.grid{display:grid;gap:16px}.cols2{grid-template-columns:repeat(2,minmax(0,1fr))}.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}.cols4{grid-template-columns:repeat(4,minmax(0,1fr))}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.stat{padding:20px}.stat strong{display:block;font-size:27px;letter-spacing:-1px;line-height:1.35}.stat span{font-size:12px;color:var(--muted)}.badge{display:inline-block;padding:3px 9px;background:var(--primaryLight);color:var(--primary);font-size:10px;font-weight:800;border-radius:7px}.badge.done{background:var(--pale);color:var(--teal)}.badge.warn{background:#fff4df;color:#9c661e}.section{margin:22px 0 12px}.section h2{margin:0}.intro{border-radius:14px;color:#fff;background:linear-gradient(110deg,#23456f,#3f6bbb);padding:26px;display:flex;justify-content:space-between;gap:20px;margin-bottom:22px}.intro h2{font-size:24px;margin:0 0 5px}.intro p{margin:0;color:#dde8fa;max-width:760px}.intro .num{font-size:72px;font-weight:900;line-height:1;opacity:.2}.phasebars{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.phasebar{border:1px solid var(--border);border-radius:10px;background:#fff;padding:12px;text-align:center;font-weight:800;font-size:12px}.phasebar.active{background:var(--primaryLight);border-color:#9eb7e3;color:var(--primary)}.phasebar.completed{background:var(--pale);color:var(--teal)}.phasebar small{display:block;color:var(--muted);font-size:10px;font-weight:500}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field label{font-size:11px;font-weight:800;color:var(--muted)}input,select,textarea{background:#fff;color:var(--text);border:1px solid #d5deea;border-radius:8px;padding:10px;min-width:0;width:100%;outline:none}input:focus,select:focus,textarea:focus{border-color:#315fb3;box-shadow:0 0 0 2px #dae7ff}textarea{min-height:83px;resize:vertical}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.wide{grid-column:1/-1}.hint{font-size:11px;color:var(--muted)}.tablewrap{overflow:auto;border:1px solid var(--border);border-radius:10px}.table{border-collapse:collapse;min-width:670px;width:100%;text-align:left;font-size:12px}.table th{background:#f1f5fa;color:#607087;font-size:11px}.table th,.table td{padding:9px 12px;border-bottom:1px solid var(--border)}.table tr:last-child td{border-bottom:0}.table input,.table select{min-width:120px;padding:7px;font-size:12px}.toolcard{padding:16px;display:flex;flex-direction:column;gap:8px}.toolcard h3{margin:0}.toolcard p{font-size:12px;color:var(--muted);flex:1;margin:0}.toolcard .kind{font-size:10px;color:var(--teal);font-weight:800;text-transform:uppercase}.listrow{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding:13px 0}.listrow:last-child{border-bottom:0}.empty{padding:45px 20px;text-align:center;color:var(--muted);border:1px dashed #c8d5e4;border-radius:12px}.notice{background:var(--primaryLight);border-left:3px solid var(--primary);padding:13px 15px;border-radius:7px;font-size:12px}.notice.warn{background:#fff5e4;border-color:#cc8c26}.auth{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(125deg,#14283f 0,#274a78 53%,#e5edf7 53.1%,#f5f7fb 100%)}.auth .card{width:min(470px,100%);padding:32px}.auth h1{font-size:25px}.auth input{margin:6px 0 15px}.auth label{display:block;font-weight:750;font-size:12px}.auth .btn{width:100%;margin-top:8px}.modal-layer{position:fixed;inset:0;background:#101d36a8;z-index:30;display:grid;place-items:center;padding:14px}.modal{width:min(640px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:15px;padding:27px;box-shadow:0 15px 50px #0002}.modal h2{margin-bottom:14px}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.tabs button{padding:8px 12px;border:1px solid var(--border);background:white;border-radius:8px;font-size:12px;font-weight:700}.tabs button.on{background:var(--primaryLight);color:var(--primary);border-color:#abc2e7}.chartarea svg{max-width:100%;height:auto;border:1px solid var(--border);border-radius:9px;background:white}.dangertext{color:var(--danger)}.success{color:var(--teal)}.start{display:grid;place-items:center;min-height:65vh;text-align:center}.projectbox{padding:19px;cursor:pointer}.projectbox:hover{border-color:#9bb8df}.projectbox h3{font-size:17px}.workspace-save{position:fixed;bottom:22px;right:25px;background:#183a56;color:white;border-radius:10px;padding:10px 15px;box-shadow:0 6px 25px #10294b55;z-index:40;font-size:12px}.meter{height:8px;background:#e9edf5;border-radius:20px;overflow:hidden}.meter i{height:100%;display:block;background:#1c9579}.startup{padding:70px;color:#61748c}.calc-result{padding:16px;border:1px solid #d6e7db;border-radius:10px;background:#f4fbf7}.calc-result strong{font-size:23px}.footerline{border-top:1px solid var(--border);margin-top:30px;padding-top:20px;font-size:11px;color:var(--muted)}@media(max-width:1100px){.cols4,.cols3{grid-template-columns:repeat(2,minmax(0,1fr))}.app{grid-template-columns:205px 1fr}.main{padding:22px}}@media(max-width:750px){.app{display:block}.side{position:relative;height:auto;padding:10px}.brand{padding:7px}.nav-label{margin:8px}.side nav{display:flex;overflow:auto}.nav{width:auto;white-space:nowrap}.sidefoot{display:none}.main{padding:18px}.top{position:relative;height:auto;min-height:70px;padding:12px;flex-wrap:wrap}.cols4,.cols3,.cols2,.formgrid{grid-template-columns:1fr}.intro .num{display:none}.phasebars{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.phasebar{padding:8px 3px;font-size:10px}.phasebar small{font-size:8px}}
+/* Typed project data library: editable schema and SPC workspaces */
+.modal:has([data-schema-row]){width:min(980px,98vw)}
+.modal [data-schema-row] td{vertical-align:middle}
+.modal [data-schema-row] td:nth-child(1){min-width:170px}
+.modal [data-schema-row] td:nth-child(2){min-width:190px}
+.modal [data-schema-row] td:nth-child(4){min-width:70px;text-align:center}
+.chartarea svg{display:block;width:100%;max-width:780px;margin:8px auto 24px}
+.chartarea h3{margin:20px 0 10px}
+.card details summary{cursor:pointer;color:var(--primary);font-weight:700}
+.card details summary:hover{text-decoration:underline}
+@media(max-width:680px){.modal{padding:16px}.modal:has([data-schema-row]){width:98vw}}
+
+</style>
+</head>
+<body>
+<div id="app"><div class="startup">Loading Six Sigma Studio…</div></div>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.58.0?bundle';
+
+const DataLib=(()=>{
+/**
+ * Six Sigma Studio — reusable project data library.
+ * A saved dataset belongs to a project, not to a specific method.
+ * Columns are typed and validated on manual entry, edit and CSV import.
+ */
+const validTypes=['text','category','number','integer','percent','date','datetime','boolean'];
+let draft=null;
+const eid=()=>('c'+crypto.randomUUID().replaceAll('-','').slice(0,13));
+const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
+function empty(v){return v==null||String(v).trim()===''}
+function parseTypedValue(raw,col){
+  const type=col.type||'text';
+  if(empty(raw)){if(col.required)throw Error(col.label+' is required.');return null}
+  let value=String(raw).trim();
+  if((type==='number'||type==='percent')&&/^-?\d+,\d+$/.test(value))value=value.replace(',','.');
+  if(type==='date'||type==='datetime'){
+   const eu=value.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+   if(eu)value=eu[3]+'-'+eu[2].padStart(2,'0')+'-'+eu[1].padStart(2,'0')+(type==='datetime'?'T'+(eu[4]||'00').padStart(2,'0')+':'+(eu[5]||'00'):'');
+  }
+  if(type==='integer'){if(!/^-?\d+$/.test(value)||!Number.isSafeInteger(Number(value)))throw Error(col.label+': enter a whole number.');return Number(value)}
+  if(type==='number'||type==='percent'){const n=Number(value);if(!Number.isFinite(n))throw Error(col.label+': enter a finite number.');if(type==='percent'&&(n<0||n>100))throw Error(col.label+': percentage must be between 0 and 100.');return n}
+  if(type==='date'){const d=new Date(value);if(!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(d.getTime())||d.toISOString().slice(0,10)!==value)throw Error(col.label+': enter a valid date.');return value}
+  if(type==='datetime'){const d=new Date(value);if(!Number.isFinite(d.getTime()))throw Error(col.label+': enter a valid date and time.');return value}
+  if(type==='boolean'){if(['true','yes','1','ja'].includes(value.toLowerCase()))return true;if(['false','no','0','nein'].includes(value.toLowerCase()))return false;throw Error(col.label+': use true or false.')}
+  return value;
+}
+function rowFromInputs(ds,selector,scope=document){
+ const values={},cells=[...scope.querySelectorAll(selector)];for(const col of ds.columns){const cell=cells.find(e=>(e.dataset.newCell||e.dataset.col)===col.key);if(cell)values[col.key]=parseTypedValue(cell.type==='checkbox'?String(cell.checked):cell.value,col)}return values
+}
+function suggestColumnType(samples){
+ const vals=samples.map(x=>String(x??'').trim()).filter(Boolean);if(!vals.length)return 'text';
+ if(vals.every(v=>/^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}/.test(v)||/^\d{1,2}\.\d{1,2}\.\d{4}[ T]\d{1,2}:\d{2}/.test(v)))return 'datetime';
+ if(vals.every(v=>/^\d{4}-\d{2}-\d{2}$/.test(v)||/^\d{1,2}\.\d{1,2}\.\d{4}$/.test(v)))return 'date';
+ if(vals.every(v=>!/^0\d+$/.test(v)&&/^-?\d+$/.test(v)&&Number.isSafeInteger(Number(v))))return 'integer';
+ if(vals.every(v=>!/^0\d+$/.test(v)&&Number.isFinite(Number(v.replace(',','.')))))return 'number';
+ if(vals.every(v=>/^(true|false|yes|no|ja|nein)$/i.test(v)))return 'boolean';
+ return 'category'
+}
+const types=[['text','Text'],['category','Category / label'],['number','Decimal measurement'],['integer','Whole number / count'],['percent','Percentage (0–100)'],['date','Date'],['datetime','Date + time'],['boolean','Yes / No']];
+function opt(list,value){return list.map(([v,label])=>'<option value="'+escapeHTML(v)+'" '+(v===value?'selected':'')+'>'+escapeHTML(label)+'</option>').join('')}
+function inputType(col){const t=col.type||'text';return t==='date'?'date':t==='datetime'?'datetime-local':['number','integer','percent'].includes(t)?'number':'text'}
+function schemaTemplates(key){
+ const cols=(items)=>items.map(([label,type,unit])=>({key:eid(),label,type,unit:unit||'',required:false}));
+ const templates={
+  imr_m:[['Observed at','datetime'],['Measurement','number'],['Machine / shift','category']],
+  imr_c:[['Observed at','datetime'],['Measurement','number'],['Machine / shift','category']],
+  xbar:[['Subgroup','category'],['Measurement','number'],['Sampled at','datetime']],
+  pchart:[['Sampled at','datetime'],['Inspected units','integer'],['Defective units','integer']],
+  npchart:[['Sampled at','datetime'],['Inspected units','integer'],['Defective units','integer']],
+  cchart:[['Sampled at','datetime'],['Defect count','integer']],
+  uchart:[['Sampled at','datetime'],['Opportunity / exposure size','number'],['Defect count','integer']],
+  pareto:[['Defect category','category'],['Number of defects','integer'],['Date','date']],
+  dpmo:[['Inspected units','integer'],['Number of defects','integer'],['Date','date']],
+  ttest:[['Group','category'],['Measurement','number']],
+  anova:[['Group','category'],['Measurement','number']],
+  scatter:[['X (factor)','number'],['Y (response)','number']],
+  capability:[['Observed at','datetime'],['Measurement','number']],
+  normal:[['Measurement','number']],
+  hist:[['Measurement','number']],
+  baseline:[['Measurement','number']],
+  run:[['Observed at','datetime'],['Measurement','number']]
+ };
+ return cols(templates[key]||[['Date','date'],['Value','number']])
+}
+function storeDraftFromDOM(){
+ if(!draft)return;let n=document.querySelector('#dataset-builder-name'),d=document.querySelector('#dataset-builder-description');
+ if(n)draft.name=n.value;if(d)draft.description=d.value;
+ for(let i=0;i<draft.columns.length;i++){let row=document.querySelector('[data-schema-row="'+i+'"]');if(!row)continue;let col=draft.columns[i];col.label=row.querySelector('[data-schema-label]').value;col.type=row.querySelector('[data-schema-type]').value;col.unit=row.querySelector('[data-schema-unit]').value;col.required=row.querySelector('[data-schema-required]').checked}
+}
+function viewDraft(ctx){
+ if(!draft)return;
+ const edit=!!draft.id;let {modal,btn}=ctx;
+ modal('<div class="caps">Independent project dataset</div><h2>'+(edit?'Edit saved table schema':'Create a typed data table')+'</h2><p class="muted small">Name this table, choose every column title and its data type, then save it in the project Data Library. All DMAIC methods can reuse the saved table.</p><div class="formgrid">'+
+ '<div class="field"><label>Table name</label><input id="dataset-builder-name" value="'+escapeHTML(draft.name)+'" placeholder="e.g. Weekly inspection data"></div>'+
+ '<div class="field"><label>Purpose / description</label><input id="dataset-builder-description" value="'+escapeHTML(draft.description)+'" placeholder="What is being measured?"></div></div>'+
+ '<div class="row section"><h3>Columns · '+draft.columns.length+'</h3>'+btn('+ Add column','builder-add-column')+'</div>'+
+ '<div class="tablewrap"><table class="table" style="min-width:565px"><thead><tr><th>Column title</th><th>Data type</th><th>Unit</th><th>Required</th><th></th></tr></thead><tbody>'+
+ draft.columns.map((c,i)=>'<tr data-schema-row="'+i+'"><td><input data-schema-label value="'+escapeHTML(c.label)+'" placeholder="Column name"></td><td><select data-schema-type>'+opt(types,c.type)+'</select></td><td><input data-schema-unit value="'+escapeHTML(c.unit||'')+'" placeholder="mm, °C, pcs"></td><td style="text-align:center"><input data-schema-required type="checkbox" '+(c.required?'checked':'')+' style="width:auto"></td><td>'+btn('Remove','builder-remove:'+i,'small danger')+'</td></tr>').join('')+
+ '</tbody></table></div>'+
+ '<p class="notice section">A table is saved once, independently of a chart. For SPC, choose an observation timestamp or preserve the saved row order. Numeric counts, measured values, categories, dates and percentages remain distinct data types.</p>'+
+ '<div class="buttons section">'+btn('Save table in Data Library','builder-save','primary')+btn('Cancel','builder-cancel')+'</div>')
+}
+function openBuilder(ctx,existing=null,templateKey=null){
+ if(existing){draft={id:existing.id,name:existing.name,description:existing.description||'',columns:structuredClone(existing.columns),toolId:ctx.S.tool?.phase===ctx.S.page?ctx.S.tool.id:null}}
+ else {let toolId=ctx.S.tool?.id||null;draft={id:null,name:templateKey?(ctx.S.tool?.title||templateKey)+' · Data': '',description:'',columns:schemaTemplates(templateKey),toolId}}
+ viewDraft(ctx)
+}
+async function handleBuilderAction(action,ctx){
+ if(!draft)return;
+ if(action==='builder-cancel'){draft=null;ctx.closeModal();return}
+ storeDraftFromDOM();
+ if(action==='builder-add-column'){draft.columns.push({key:eid(),label:'',type:'number',unit:'',required:false});viewDraft(ctx);return}
+ if(action.startsWith('builder-remove:')){
+  const i=Number(action.split(':')[1]);if(draft.columns.length===1)throw Error('The table must contain at least one column.');
+  let col=draft.columns[i];
+  if(draft.id){let hasData=ctx.S.rows.some(r=>r.dataset_id===draft.id&&!empty(r.values[col.key]));if(hasData)throw Error('Cannot remove '+col.label+' while saved observations contain data. Export the table or clear those values first.')}
+  draft.columns.splice(i,1);viewDraft(ctx);return;
+ }
+ if(action!=='builder-save')return;
+ if(!draft.name?.trim())throw Error('Give the table a name.');
+ if(!draft.columns.length||draft.columns.some(c=>!c.label.trim()))throw Error('Every column needs a title.');
+ if(new Set(draft.columns.map(c=>c.label.toLowerCase().trim())).size!==draft.columns.length)throw Error('Column titles must be unique.');
+ if(draft.id){
+  const old=ctx.S.datasets.find(d=>d.id===draft.id);
+  for(const col of draft.columns){const before=old.columns.find(c=>c.key===col.key);
+   if(before&&(before.type!==col.type||(!before.required&&col.required))){
+    let rows=ctx.S.rows.filter(r=>r.dataset_id===old.id);
+    for(const r of rows)try{parseTypedValue(r.values[col.key],col)}catch(e){throw Error('Cannot change '+col.label+' requirements: '+e.message+' (existing observations)')}
+   }
+  }
+  await ctx.request('datasets','update',{id:draft.id,data:{name:draft.name.trim(),description:draft.description,columns:draft.columns}});
+  ctx.S.dataset= {...old,name:draft.name.trim(),description:draft.description,columns:draft.columns};
+ }else{
+  const saved=await ctx.request('datasets','insert',{project_id:ctx.S.project.id,name:draft.name.trim(),description:draft.description,columns:draft.columns,metadata:{origin:draft.toolId?'method_template':'manual',created_by_method:draft.toolId||null}});
+  ctx.S.dataset=saved;
+  if(draft.toolId){
+   let tool=ctx.S.tools.find(t=>t.id===draft.toolId);
+   if(tool){let content={...tool.content,dataset_id:saved.id};let updated=await ctx.request('tools','update',{id:tool.id,data:{dataset_id:saved.id,content}});ctx.S.tool=updated;ctx.S.editor=structuredClone(updated.content)}
+  }
+ }
+ const fromMethod=!!draft.toolId;draft=null;ctx.closeModal();await ctx.loadProject();
+ ctx.S.page=fromMethod&&ctx.S.tool?.phase?ctx.S.tool.phase:'data';ctx.note('Named typed table saved in Supabase — ready for observations');ctx.render();
+}
+function renderDataLibrary(ctx){
+ const {S,head,btn}=ctx,ds=S.dataset&&S.datasets.find(d=>d.id===S.dataset.id)||S.datasets[0];
+ const rows=ds?S.rows.filter(r=>r.dataset_id===ds.id):[],cols=ds?.columns||[];
+ const tag=c=>escapeHTML(c.type||'text')+(c.unit?' · '+escapeHTML(c.unit):'');
+ const cell=(column,attr,val,placeholder)=>column.type==='boolean'?
+ '<select '+attr+'><option value="">—</option><option value="true" '+(val===true||val==='true'?'selected':'')+'>Yes</option><option value="false" '+(val===false||val==='false'?'selected':'')+'>No</option></select>':
+ '<input '+attr+' type="'+inputType(column)+'" '+(['number','integer','percent'].includes(column.type)?'step="'+(column.type==='integer'?'1':'any')+'" ':'')+'value="'+escapeHTML(val??'')+'" placeholder="'+escapeHTML(placeholder||'')+'">';
+ return head('Project Data Library','Create a table once, name its columns and their data types, and reuse it across Measure, Analyze and Control.',btn('+ Design new table','new-dataset','primary')+btn('Import CSV','import-new'))+
+ '<div class="grid cols3 section"><div class="card stat"><span>Saved datasets</span><strong>'+S.datasets.length+'</strong></div><div class="card stat"><span>Stored observations</span><strong>'+S.rows.length+'</strong></div><div class="card stat"><span>Current project</span><strong style="font-size:15px">'+escapeHTML(S.project.name)+'</strong></div></div>'+
+ '<div class="grid cols2 section"><div class="card pad"><div class="row"><h3>My saved tables</h3>'+btn('Create table','new-dataset','small')+'</div>'+S.datasets.map(x=>'<div class="listrow"><div><strong>'+escapeHTML(x.name)+'</strong><div class="tiny muted">'+x.columns.length+' typed columns · '+S.rows.filter(r=>r.dataset_id===x.id).length+' observations · used by '+S.tools.filter(t=>t.dataset_id===x.id||t.content?.dataset_id===x.id).length+' methods</div></div>'+btn('Open','open-dataset:'+x.id,'small')+'</div>').join('')+(S.datasets.length?'':'<p class="muted">Your project has no tables yet. Create one with your own columns or import CSV.</p>')+'</div>'+
+ '<div class="card pad"><h3>How this works</h3><p>1. Create a named table, choose each column title, data type and unit.</p><p>2. Type observations manually or import a CSV. Values are saved in Supabase.</p><p>3. Open any suitable method, select this table, map the required fields and calculate.</p><p class="notice">SPC uses chronological numerical observations or rational subgroups. Pareto uses categorical defect counts. The method—not the table—determines which fields and assumptions are required.</p></div></div>'+
+ (ds?'<div class="card pad section"><div class="row"><div><div class="caps">Active saved table</div><h2>'+escapeHTML(ds.name)+'</h2><p class="small muted">'+escapeHTML(ds.description||'')+' · '+rows.length+' observations</p></div><div class="buttons">'+btn('Edit table columns','edit-schema')+btn('Import rows','import-rows')+btn('Export CSV','export-dataset')+btn('Delete table','delete-dataset','danger small')+'</div></div>'+
+ '<div class="notice section"><b>Type-safe manual entry:</b> Select or type a value in each column, then press <b>Save observation</b>. Existing cells save when you leave the field. Every entry is stored in this project’s independent Data Library.</div>'+
+ '<div class="tablewrap section"><table class="table"><thead><tr><th>#</th>'+cols.map(c=>'<th>'+escapeHTML(c.label)+'<div class="tiny muted">'+tag(c)+(c.required?' · required':'')+'</div></th>').join('')+'<th></th></tr></thead><tbody>'+
+ rows.slice(0,400).map((r,i)=>'<tr><td class="muted">'+(i+1)+'</td>'+cols.map(c=>'<td>'+cell(c,'data-dataset-cell="'+escapeHTML(r.id)+'" data-col="'+escapeHTML(c.key)+'"',r.values[c.key])+'</td>').join('')+'<td>'+btn('×','delete-data-row:'+r.id,'danger small')+'</td></tr>').join('')+
+ '<tr style="background:#eef4ff"><td><strong>New</strong></td>'+cols.map(c=>'<td>'+cell(c,'data-new-cell="'+escapeHTML(c.key)+'"','',c.label)+'</td>').join('')+'<td>'+btn('Save observation','add-data-row','primary small')+'</td></tr>'+
+ '</tbody></table></div>'+
+ (rows.length>400?'<p class="small muted">First 400 rows displayed; export CSV for the full loaded dataset. For very large tables, pagination will be needed.</p>':'')+
+ '</div>':'')
+}
+
+return {parseTypedValue,rowFromInputs,suggestColumnType,inputType,schemaTemplates,openBuilder,handleBuilderAction,renderDataLibrary};
+})();
+
+
+const StatLib=(()=>{
+/**
+ * Statistical method adapters: each calculator declares what its data must look like.
+ * SPC control charts are implemented separately from document workbooks and generic tests.
+ */
+const numTypes=new Set(['number','integer','percent']);
+const categoryTypes=new Set(['text','category','integer','boolean','date','datetime']);
+const timeTypes=new Set(['date','datetime','integer','number']);
+const SPC=new Set(['imr_m','imr_c','xbar','pchart','npchart','cchart','uchart']);
+const policies={
+ imr_m:{title:'I–MR · Individual measurements',question:'Does the sequence of individual measurements remain statistically stable?',needs:'At least three chronological, continuous individual measurements.',roles:[['y','Individual measurement','numeric'],['order','Date / time / sequence (optional)','time?']],hint:'Subgroups are not required. Each row represents one individual process measurement. A moving range compares adjacent observations.'},
+ imr_c:{title:'I–MR · Control monitoring',question:'Is the improved process behaving consistently after implementation?',needs:'At least three chronological, continuous measurements.',roles:[['y','Individual measurement','numeric'],['order','Date / time / sequence (optional)','time?']],hint:'Save a fresh Control-phase tool instance to maintain a separate control plan or baseline.'},
+ xbar:{title:'X-bar / R · Subgroup measurements',question:'Are subgroup averages and within-subgroup ranges in statistical control?',needs:'At least two rational subgroups, 2–10 measurements in each. All subgroups must have the same size.',roles:[['x','Subgroup ID / sample number','category'],['y','Measurement within subgroup','numeric'],['order','Subgroup collection date / time (optional)','time?']],hint:'Each row is one measured item. Repeat the same subgroup ID for all items collected together; do not average observations before importing.'},
+ pchart:{title:'p Chart · Proportion defective',question:'Is the proportion of defective units stable across inspection subgroups?',needs:'For each subgroup: defective units and number inspected. Sample sizes may vary.',roles:[['x','Units inspected (denominator)','count'],['y','Defective units (numerator)','count'],['order','Date / time / batch order (optional)','time?']],hint:'Counts here are defective units, NOT number of defects. p_i = defective units / units inspected. Limits adjust to each sample size.'},
+ npchart:{title:'np Chart · Number of defective units',question:'Is the count of defective units stable with a constant sample size?',needs:'Integer defective units and a constant inspected quantity for all subgroups.',roles:[['x','Units inspected (must be constant)','count'],['y','Defective units','count'],['order','Date / time / batch order (optional)','time?']],hint:'If the subgroup size changes, use the p chart, not np.'},
+ cchart:{title:'c Chart · Defects per constant opportunity',question:'Is the count of defects stable when inspection opportunity is constant?',needs:'Integer count of defects for each equal-sized inspection unit.',roles:[['y','Defect count per inspection unit','count'],['order','Date / time / batch order (optional)','time?']],hint:'Only appropriate when inspection unit and opportunities remain constant. One unit can have multiple defects.'},
+ uchart:{title:'u Chart · Defects per varying opportunity',question:'Is the number of defects per unit of exposure stable across varying sample sizes?',needs:'Integer defect count plus a positive numeric opportunity/exposure size per subgroup.',roles:[['x','Inspection opportunity / exposure','positive'],['y','Defect count','count'],['order','Date / time / batch order (optional)','time?']],hint:'u_i = defect count / opportunity. Control limits vary with the exposure size.'},
+ pareto:{title:'Pareto · Ranked defect categories',question:'Which categories contribute most to the problem?',needs:'A category column and optional nonnegative count / cost column.',roles:[['x','Defect / cause category','category'],['y','Frequency, loss or cost (optional)','numeric?']],hint:'If frequency is not mapped, every row counts as one occurrence. Missing categories are not counted.'},
+ baseline:{title:'Descriptive statistics · Baseline',question:'What is the measured baseline and natural variation?',needs:'At least two numerical observations.',roles:[['y','Measured value','numeric']],hint:'Compute a sample mean and sample standard deviation; verify missing values and the measurement system.'},
+ hist:{title:'Histogram · Distribution',question:'How is the continuous measurement distributed?',needs:'A numerical measurement column.',roles:[['y','Measured value','numeric']],hint:'Check for mixture distributions, outliers and stratification before modeling normality.'},
+ run:{title:'Run Chart · Chronological observations',question:'Is there a trend or shift in the measurement over time?',needs:'Numerical values in meaningful observation order.',roles:[['y','Measured value','numeric'],['order','Date / time / sequence (optional)','time?']],hint:'When time is not selected, rows use their persisted insertion order.'},
+ normal:{title:'Jarque–Bera normality screening',question:'Does the distribution show strong evidence of non-normal skew or kurtosis?',needs:'At least eight numerical observations.',roles:[['y','Measured value','numeric']],hint:'This asymptotic screen is not a substitute for graphical inspection or process understanding.'},
+ capability:{title:'Overall-sigma Pp / Ppk',question:'Does the process fit the specification limits?',needs:'Continuous numerical values and valid LSL / USL.',roles:[['y','Measured value','numeric']],hint:'Capability interpretation requires a stable process, a good measurement system and a suitable distribution.'},
+ dpmo:{title:'DPMO · Defects per million opportunities',question:'How many defects occur for each million defined opportunities?',needs:'Produced-unit counts, defect counts and opportunity count per unit.',roles:[['x','Units inspected / produced','count'],['y','Total defect occurrences','count']],hint:'Defect counts are not the same as defective-unit counts.'},
+ scatter:{title:'Simple Regression · Predictor / response',question:'How is a numerical response associated with a numerical predictor?',needs:'At least three paired observations.',roles:[['x','Predictor X','numeric'],['y','Response Y','numeric']],hint:'Use independent observations and review residuals; association does not establish causality.'},
+ ttest:{title:'Welch t-test · Two groups',question:'Are two independent group means different?',needs:'Exactly two group levels, each with two or more numerical observations.',roles:[['x','Group / machine / shift','category'],['y','Measured response','numeric']],hint:'This is an independent Welch test, not a paired t-test.'},
+ anova:{title:'One-way ANOVA · Multiple groups',question:'Are group means different across two or more groups?',needs:'Numerical response and category column, with at least two observations per group.',roles:[['x','Group / factor','category'],['y','Measured response','numeric']],hint:'Check independence, group variances and residual behavior.'}
+};
+function isSPC(key){return SPC.has(key)}
+function methodPolicy(key){return policies[key]||null}
+function e(x){return String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function validColumn(c,kind){let t=c.type||'text';if(kind==='numeric'||kind==='numeric?')return numTypes.has(t);if(kind==='count')return numTypes.has(t);if(kind==='positive')return numTypes.has(t);if(kind==='category')return categoryTypes.has(t);if(kind==='time?')return timeTypes.has(t);return true}
+function roleList(cols,kind,cur){const optional=kind.endsWith('?');let opts=[['',optional?'Optional / row order':'Select column']];opts.push(...cols.filter(c=>validColumn(c,kind)).map(c=>[c.key,c.label+' · '+(c.type||'text')]));
+ return '<select name="'+e(cur.bind)+'" data-method-role="'+e(cur.bind)+'">'+opts.map(([key,title])=>'<option value="'+e(key)+'" '+(cur.value===key?'selected':'')+'>'+e(title)+'</option>').join('')+'</select>'
+}
+function datasetSupported(policy,ds){return policy.roles.filter(x=>!x[2].endsWith('?')).every(([k,label,kind])=>ds.columns.some(c=>validColumn(c,kind)))}
+function methodPanel(method,ctx){
+ const {S,select,input,btn}=ctx,p=methodPolicy(method.key);if(!p)return '<div class="notice warn">This method uses a structured workbook rather than numerical computation.</div>';
+ const c=S.editor||S.tool?.content||{},ds=S.datasets.find(d=>d.id===c.dataset_id),rows=ds?S.rows.filter(r=>r.dataset_id===ds.id):[];
+ const datasetOptions=[['','Choose a saved project table'],...S.datasets.map(x=>[x.id,(datasetSupported(p,x)?'✓ ':'Needs columns · ')+x.name])];
+ let html='<div class="card pad section"><div class="caps">Method-specific data requirements</div><h3>'+e(p.title)+'</h3><p>'+e(p.question)+'</p><div class="notice">'+e(p.needs)+'</div><p class="small muted">'+e(p.hint)+'</p></div>';
+ html+='<div class="card pad section"><div class="row"><h3>1. Select a saved data table</h3>'+btn('Create compatible table','template-dataset:'+method.key,'primary small')+'</div>'+
+ select('Saved table','dataset_id',datasetOptions,c.dataset_id||'')+
+ (ds?'<div class="row section"><p class="small muted">'+rows.length+' saved rows · '+ds.columns.map(x=>e(x.label)+' ('+e(x.type)+')').join(', ')+'</p>'+btn('Enter or edit observations','open-data-from-tool','small')+'</div>':'<p class="muted small">Build a reusable table first, or select one previously saved in your project’s Data Library.</p>')+'</div>';
+ if(ds){html+='<div class="card pad section"><h3>2. Map the exact method inputs</h3><p class="small muted">These mappings belong to this instance of '+e(method.title)+'. Another method can reuse the same table with different input mappings.</p><div class="formgrid">'+
+ p.roles.map(([bind,label,kind])=>'<div class="field"><label>'+e(label)+'</label>'+roleList(ds.columns,kind,{bind,value:c[bind]||''})+'</div>').join('')+
+ (method.key==='capability'?input('LSL (lower specification limit)','lsl',c.lsl??'','number')+input('USL (upper specification limit)','usl',c.usl??'','number'):'')+
+ (method.key==='dpmo'?input('Defect opportunities per unit','opportunities',c.opportunities??1,'number'):'')+'</div></div>';
+ let required=p.roles.filter(x=>!x[2].endsWith('?')).map(x=>x[0]);let missing=required.filter(x=>!c[x]);if(missing.length)html+='<div class="notice warn section">Required column mappings are missing. Select the roles above, then click Calculate. Nothing will be estimated from a different column.</div>';
+ else html+='<div class="notice section">Ready for data validation. Press Calculate; the tool checks sample sizes, numeric counts, denominators and chart-specific restrictions before saving a result.</div>';
+ }
+ html+='<div class="buttons section">'+btn('Calculate from saved observations','calculate','primary')+'</div>';
+ return html;
+}
+function numeric(v,name){if(v===null||v===undefined||String(v).trim()==='')throw Error(name+' has a blank value.');let n=Number(v);if(!Number.isFinite(n))throw Error(name+' must contain finite numerical values.');return n}
+function integer(v,name){let n=numeric(v,name);if(!Number.isSafeInteger(n)||n<0)throw Error(name+' requires a nonnegative integer.');return n}
+function positive(v,name){let n=numeric(v,name);if(n<=0)throw Error(name+' must be positive.');return n}
+function fmt(n){return Number(n).toLocaleString(undefined,{maximumFractionDigits:4})}
+function avg(a){return a.reduce((p,n)=>p+n,0)/a.length}
+function totals(a){return a.reduce((p,n)=>p+n,0)}
+function ordered(rows,order){
+ const result=[...rows].sort((a,b)=>(Number(a.sequence_no)||0)-(Number(b.sequence_no)||0));
+ if(!order)return result;
+ for(let i=0;i<result.length;i++){let v=result[i].values[order];if(v===null||v===undefined||String(v).trim()==='')throw Error('Missing observation order at row '+(i+1));}
+ return result.sort((a,b)=>{const x=a.values[order],y=b.values[order];if(Number.isFinite(Number(x))&&Number.isFinite(Number(y)))return Number(x)-Number(y);let n1=new Date(x).getTime(),n2=new Date(y).getTime();if(Number.isFinite(n1)&&Number.isFinite(n2))return n1-n2;return String(x).localeCompare(String(y),undefined,{numeric:true})});
+}
+function chart(title,values,center,upper,lower,labels=[]){
+ const width=780,height=295,left=55,right=15,top=23,bottom=58,w=width-left-right,h=height-top-bottom,n=values.length;
+ const U=Array.isArray(upper)?upper:values.map(()=>upper),L=Array.isArray(lower)?lower:values.map(()=>lower),C=Array.isArray(center)?center:values.map(()=>center);
+ const all=[...values,...U,...L,...C].filter(Number.isFinite),minimum=Math.min(...all),maximum=Math.max(...all),pad=(maximum-minimum||1)*.12,lo=minimum-pad,hi=maximum+pad;
+ const px=i=>left+w*(n===1?.5:i/(n-1)),py=v=>top+h*(hi-v)/(hi-lo),line=(a,color,width=2,dashed=false)=>'<polyline fill="none" stroke="'+color+'" stroke-width="'+width+'" '+(dashed?'stroke-dasharray="6 5"':'')+' points="'+a.map((v,i)=>px(i).toFixed(1)+','+py(v).toFixed(1)).join(' ')+'"/>';
+ const tick=Array.from({length:5},(_,i)=>lo+(hi-lo)*i/4);
+ return '<div class="section"><h3>'+e(title)+'</h3><svg viewBox="0 0 '+width+' '+height+'" role="img" aria-label="'+e(title)+'; values and variable control limits"><rect x="0" y="0" width="'+width+'" height="'+height+'" fill="#fff"/>'+
+ tick.map(v=>'<line x1="'+left+'" x2="'+(width-right)+'" y1="'+py(v)+'" y2="'+py(v)+'" stroke="#e9edf3"/><text x="'+(left-8)+'" y="'+(py(v)+4)+'" text-anchor="end" font-size="10" fill="#64748b">'+e(fmt(v))+'</text>').join('')+
+ line(U,'#c15656',1.4,true)+line(L,'#c15656',1.4,true)+line(C,'#188c76',1.6,true)+line(values,'#2f66b7',2.8)+
+ values.map((v,i)=>'<circle cx="'+px(i)+'" cy="'+py(v)+'" r="'+(v>U[i]||v<L[i]?5:3)+'" fill="'+(v>U[i]||v<L[i]?'#cc374b':'#2f66b7')+'"><title>'+e(labels[i]??('#'+(i+1)))+': '+e(fmt(v))+' · LCL '+e(fmt(L[i]))+' · CL '+e(fmt(C[i]))+' · UCL '+e(fmt(U[i]))+'</title></circle>').join('')+
+ '<text x="'+(width/2)+'" y="'+(height-10)+'" text-anchor="middle" font-size="11" fill="#60738e">Observation / subgroup sequence (hover over points for limits)</text></svg></div>';
+}
+function calcResult(title,metrics,charts,warning){return {summary:title,metrics,svg:charts,warning,at:new Date().toISOString()}}
+function computeSPC(key,rawRows,c){
+ if(!isSPC(key))throw Error('Not an SPC method.');
+ const rows=ordered(rawRows,c.order),n=rows.length;if(n<2)throw Error('At least two observations/subgroups are required. Use the Data Library to enter observations first.');
+ const need=code=>{if(!c[code])throw Error('Choose the '+code+' column for this method.')};
+ need('y');
+ const label=rows.map((r,i)=>String(c.order?r.values[c.order]??i+1:i+1));
+ if(key==='imr_m'||key==='imr_c'){
+  if(n<3)throw Error('I–MR needs at least three chronological individual measurements.');
+  const x=rows.map((r,i)=>numeric(r.values[c.y],'Individual measurement, row '+(i+1)));
+  const mr=x.slice(1).map((v,i)=>Math.abs(v-x[i])),mrbar=avg(mr),center=avg(x),ucl=center+2.66*mrbar,lcl=center-2.66*mrbar;
+  const uclMR=3.267*mrbar;let signal=x.filter(v=>v>ucl||v<lcl).length,signalMr=mr.filter(v=>v>uclMR).length;
+  return calcResult('I–MR chart from sequential individual measurements',{observations:n,individuals_center:center,individuals_UCL:ucl,individuals_LCL:lcl,moving_range_center:mrbar,moving_range_UCL:uclMR,moving_range_LCL:0,individuals_beyond_limits:signal,moving_ranges_beyond_limits:signalMr},
+  chart('Individuals (X)',x,center,ucl,lcl,label)+chart('Moving range (MR)',mr,mrbar,uclMR,0,label.slice(1)),
+  '3-sigma I–MR estimates assume stable sequential data. Review rational time order, special-cause run rules, independence and distribution before interpretation.');
+ }
+ if(key==='xbar'){
+  need('x');let groups=new Map;
+  for(let i=0;i<n;i++){let name=String(rows[i].values[c.x]??'').trim();if(!name)throw Error('Missing subgroup ID at row '+(i+1));let a=groups.get(name)||[];a.push(numeric(rows[i].values[c.y],'Measurement at row '+(i+1)));groups.set(name,a)}
+  let keys=[...groups.keys()],a=[...groups.values()],m=a[0].length;
+  if(a.length<2||m<2||m>10||a.some(g=>g.length!==m))throw Error('X-bar/R requires at least two rational subgroups, all with exactly 2–10 individual measurements.');
+  const A2={2:1.88,3:1.023,4:.729,5:.577,6:.483,7:.419,8:.373,9:.337,10:.308},D3={2:0,3:0,4:0,5:0,6:0,7:.076,8:.136,9:.184,10:.223},D4={2:3.267,3:2.574,4:2.282,5:2.114,6:2.004,7:1.924,8:1.864,9:1.816,10:1.777};
+  const means=a.map(avg),ranges=a.map(v=>Math.max(...v)-Math.min(...v)),mubar=avg(means),rbar=avg(ranges),ux=mubar+A2[m]*rbar,lx=mubar-A2[m]*rbar,ur=D4[m]*rbar,lr=D3[m]*rbar;
+  return calcResult('X-bar and R control charts for rational subgroups',{subgroups:a.length,n_per_subgroup:m,Xbar_center:mubar,Xbar_UCL:ux,Xbar_LCL:lx,R_center:rbar,R_UCL:ur,R_LCL:lr,Xbar_beyond_limits:means.filter(v=>v>ux||v<lx).length,R_beyond_limits:ranges.filter(v=>v>ur||v<lr).length},
+  chart('Subgroup means (X-bar)',means,mubar,ux,lx,keys)+chart('Within-subgroup range (R)',ranges,rbar,ur,lr,keys),
+  'Use meaningful process subgroups; review the R chart before interpreting mean-chart signals. These are chart limits, not product specifications.');
+ }
+ if(key==='pchart'||key==='npchart'){
+  need('x');const d=rows.map((r,i)=>integer(r.values[c.y],'Defective units, row '+(i+1))),units=rows.map((r,i)=>integer(r.values[c.x],'Inspected units, row '+(i+1)));
+  if(units.some(a=>a<1))throw Error('Every subgroup must have at least one inspected unit.');
+  if(d.some((v,i)=>v>units[i]))throw Error('Defective units may not exceed inspected units. This tool counts defective units, not defects.');
+  const p=totals(d)/totals(units);
+  if(key==='npchart'&&new Set(units).size!==1)throw Error('np chart needs constant subgroup size. Use a p chart for varying sample sizes.');
+  if(key==='pchart'){
+   let point=d.map((v,i)=>v/units[i]),u=units.map(v=>Math.min(1,p+3*Math.sqrt(p*(1-p)/v))),l=units.map(v=>Math.max(0,p-3*Math.sqrt(p*(1-p)/v)));
+   return calcResult('p chart with subgroup-specific control limits',{subgroups:n,total_units:totals(units),total_defective:totals(d),center_proportion:p,UCL_by_subgroup:u,LCL_by_subgroup:l,outside_limits:point.filter((v,i)=>v>u[i]||v<l[i]).length},
+   chart('Proportion defective · variable subgroup limits',point,p,u,l,label),
+   'Use defective UNIT counts. Control limits vary with subgroup sample size and are not specification limits.');
+  }
+  let np=p*units[0],sd=Math.sqrt(units[0]*p*(1-p)),u=Math.min(units[0],np+3*sd),l=Math.max(0,np-3*sd);
+  return calcResult('np chart for constant-size subgroups',{subgroups:n,inspected_per_subgroup:units[0],center_defective_count:np,UCL:u,LCL:l,outside_limits:d.filter(v=>v>u||v<l).length},
+  chart('Count of defective units · np',d,np,u,l,label),'All inspected subgroup sizes must remain equal.');
+ }
+ if(key==='cchart'){
+  let d=rows.map((r,i)=>integer(r.values[c.y],'Defect count, row '+(i+1))),cbar=avg(d),u=cbar+3*Math.sqrt(cbar),l=Math.max(0,cbar-3*Math.sqrt(cbar));
+  return calcResult('c chart for constant inspection opportunity',{subgroups:n,average_defects:cbar,UCL:u,LCL:l,outside_limits:d.filter(v=>v>u||v<l).length},
+  chart('Defect count · constant opportunity',d,cbar,u,l,label),
+  'Requires equal inspection opportunity per subgroup. If exposure sizes differ, use a u chart.');
+ }
+ if(key==='uchart'){
+  need('x');let d=rows.map((r,i)=>integer(r.values[c.y],'Defect count, row '+(i+1))),exposure=rows.map((r,i)=>positive(r.values[c.x],'Opportunity/exposure, row '+(i+1))),ubar=totals(d)/totals(exposure),rate=d.map((v,i)=>v/exposure[i]),u=exposure.map(v=>ubar+3*Math.sqrt(ubar/v)),l=exposure.map(v=>Math.max(0,ubar-3*Math.sqrt(ubar/v)));
+  return calcResult('u chart for defects per opportunity',{subgroups:n,total_defects:totals(d),total_exposure:totals(exposure),center_defects_per_unit:ubar,UCL_by_subgroup:u,LCL_by_subgroup:l,outside_limits:rate.filter((v,i)=>v>u[i]||v<l[i]).length},
+  chart('Defect rate · variable exposure',rate,ubar,u,l,label),
+  'Counts defects, not defective units. Uses a Poisson-type count assumption and variable limits.');
+ }
+ throw Error('No calculator configured for '+key);
+}
+
+return {isSPC,methodPolicy,methodPanel,computeSPC};
+})();
+
+
+const RunChart=(({parseTypedValue})=>{
+
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let draftKey='',draft=[];
+function initDraft(key,cols){if(draftKey!==key){draftKey=key;draft=Array.from({length:5},()=>Object.fromEntries(cols.map(c=>[c.key,''])))}}
+function resetRunDraft(){draftKey='';draft=[]}
+function updateRunDraft(el){if(!el.dataset.runCell)return false;let n=Number(el.dataset.runRow);if(!draft[n])return false;draft[n][el.dataset.runCell]=el.value;return true}
+function filledRunDraft(ds){const result=[];for(let i=0;i<draft.length;i++){const obj=draft[i],hasAny=ds.columns.some(c=>String(obj[c.key]??'').trim()!=='');if(!hasAny)continue;const values={};for(const col of ds.columns)try{values[col.key]=parseTypedValue(obj[col.key],col)}catch(e){throw Error('Manual row '+(i+1)+': '+e.message)}result.push(values)}return result}
+function clearRunDraft(ds){draft=Array.from({length:5},()=>Object.fromEntries(ds.columns.map(c=>[c.key,''])))}
+function addRunDraftRows(cols){draft.push(...Array.from({length:5},()=>Object.fromEntries(cols.map(c=>[c.key,'']))))}
+function fieldInput(col,value,attr){let type=col.type==='date'?'date':col.type==='datetime'?'datetime-local':['number','integer','percent'].includes(col.type)?'number':'text';
+ if(col.type==='boolean')return '<select '+attr+'><option value="">—</option><option value="true" '+(String(value)==='true'?'selected':'')+'>Yes</option><option value="false" '+(String(value)==='false'?'selected':'')+'>No</option></select>';
+ return '<input '+attr+' type="'+type+'" '+(['number','integer','percent'].includes(col.type)?'step="'+(col.type==='integer'?'1':'any')+'" ':'')+'value="'+esc(value??'')+'" aria-label="'+esc(col.label)+'" placeholder="'+esc(col.label)+'">';
+}
+function renderRunChartWorkspace(ctx){
+ const {S,btn,select}=ctx,editor=S.editor||{},ds=S.datasets.find(d=>d.id===editor.dataset_id);
+ const cols=ds?.columns||[],numeric=cols.filter(c=>['number','integer','percent'].includes(c.type)),times=cols.filter(c=>['datetime','date','integer','number'].includes(c.type));
+ const rows=ds?S.rows.filter(r=>r.dataset_id===ds.id):[],pageName='Run Chart · Project '+S.project.name;
+ let content='<div class="card pad section"><div class="caps">Measure · Working Run Chart</div><h2>'+esc(pageName)+'</h2><p class="muted">A run chart shows measurements in chronological order, with a median reference line. Create a table, enter observations, save, select which fields to plot, and reopen this method later. No file import is required.</p>'+
+ '<div class="row section"><h3>1. Choose a saved project table</h3>'+btn('+ Create Run Chart data table','template-dataset:run','primary small')+'</div>'+
+ select('Saved table','dataset_id',[['','Select a project table'],...S.datasets.map(d=>[d.id,d.name+' · '+d.columns.length+' fields'])],editor.dataset_id||'')+
+ (ds?'<div class="notice section">Selected: <b>'+esc(ds.name)+'</b> · <b>'+rows.length+'</b> saved observations. Columns: '+cols.map(c=>esc(c.label)+' ('+esc(c.type)+')').join(', ')+'</div>':'<div class="notice warn section">Choose or create a table to enter and chart observations.</div>')+'</div>';
+ if(!ds)return content;
+ initDraft(S.tool.id+':'+ds.id,cols);
+ content+='<div class="card pad section"><div class="row"><div><h3>2. Enter observations manually</h3><p class="small muted">Every row has its own values. Save all filled rows at once; blanks are ignored unless a column is marked required.</p></div><div class="buttons">'+btn('Import CSV to this table','run-import-csv')+btn('Edit table columns','run-edit-schema')+'</div></div>'+
+ '<div class="tablewrap section"><table class="table"><thead><tr><th>#</th>'+cols.map(c=>'<th>'+esc(c.label)+'<div class="tiny muted">'+esc(c.type)+(c.unit?' · '+esc(c.unit):'')+'</div></th>').join('')+'</tr></thead><tbody>'+
+ draft.map((row,i)=>'<tr><td>New '+(i+1)+'</td>'+cols.map(c=>'<td>'+fieldInput(c,row[c.key],'data-run-cell="'+esc(c.key)+'" data-run-row="'+i+'"')+'</td>').join('')+'</tr>').join('')+
+ '</tbody></table></div><div class="buttons">'+btn('Save entered observations','run-save-observations','primary')+btn('+ 5 more entry rows','run-add-draft-rows')+'</div></div>';
+ content+='<div class="card pad section"><div class="row"><h3>3. Reopen, inspect, and edit saved data</h3>'+btn('Export CSV','run-export-csv')+'</div>'+
+ (rows.length?'<div class="tablewrap"><table class="table"><thead><tr><th>#</th>'+cols.map(c=>'<th>'+esc(c.label)+'</th>').join('')+'<th></th></tr></thead><tbody>'+rows.slice(0,150).map((r,i)=>'<tr><td>'+(i+1)+'</td>'+cols.map(c=>'<td>'+fieldInput(c,r.values[c.key],'data-dataset-cell="'+esc(r.id)+'" data-col="'+esc(c.key)+'"')+'</td>').join('')+'<td>'+btn('Delete','delete-data-row:'+r.id,'danger small')+'</td></tr>').join('')+'</tbody></table></div>'+(rows.length>150?'<p class="small muted">Showing first 150 records. All loaded observations are used in the chart.</p>':''):'<div class="empty">No observations saved in this table. Enter your first measurements above.</div>')+'</div>';
+ content+='<div class="card pad section"><h3>4. Generate the Run Chart</h3><p class="small muted">The chart uses the saved observations above. Choose a numeric measurement and an optional date/time or sequence field.</p><div class="formgrid">'+
+ select('Y-axis: measurement column','y',[['','Choose measurement'],...numeric.map(c=>[c.key,c.label+' · '+c.type])],editor.y||'')+
+ select('X-axis: date/time or row sequence','order',[['','Saved entry order'],...times.map(c=>[c.key,c.label+' · '+c.type])],editor.order||'')+
+ '</div><div class="buttons section">'+btn('Generate Run Chart','calculate','primary')+btn('Save method settings','save-tool')+'</div>'+
+ (numeric.length?'':'<div class="notice warn section">This table contains no numerical measurement field. Edit table columns to add a numerical measurement.</div>')+
+ '</div>';
+ return content;
+}
+
+function computeRunChart(source,selection){
+ if(!selection.y)throw Error('Choose the numerical measurement column.');
+ let sorted=[...source].sort((a,b)=>(a.sequence_no||0)-(b.sequence_no||0));
+ if(selection.order){
+  for(let i=0;i<sorted.length;i++){let v=sorted[i].values[selection.order];if(v==null||String(v).trim()==='')throw Error('Timestamp or sequence value is missing at observation '+(i+1))}
+  sorted.sort((a,b)=>{
+   let x=a.values[selection.order],y=b.values[selection.order];
+   if(Number.isFinite(Number(x))&&Number.isFinite(Number(y)))return Number(x)-Number(y);
+   const dx=Date.parse(x),dy=Date.parse(y);if(Number.isFinite(dx)&&Number.isFinite(dy))return dx-dy;
+   return String(x).localeCompare(String(y),undefined,{numeric:true});
+  });
+ }
+ let clean=[];
+ sorted.forEach((r,i)=>{let v=r.values[selection.y];if(v==null||String(v).trim()==='')return;let y=Number(v);if(!Number.isFinite(y))throw Error('Non-numeric measurement at observation '+(i+1));clean.push({y,label:selection.order?String(r.values[selection.order]):String(i+1)})});
+ if(clean.length<2)throw Error('At least two saved numerical measurements are required to produce a Run Chart.');
+ const values=clean.map(p=>p.y),ordered=[...values].sort((a,b)=>a-b),median=ordered.length%2?ordered[(ordered.length-1)/2]:(ordered[ordered.length/2-1]+ordered[ordered.length/2])/2;
+ const avg=values.reduce((a,b)=>a+b,0)/values.length;
+ let runs=0,last=0,maxShift=0,shift=0;
+ for(const y of values){const sign=Math.sign(y-median);if(!sign)continue;if(sign!==last){runs++;shift=1}else shift++;maxShift=Math.max(maxShift,shift);last=sign;}
+ const w=850,h=350,L=74,R=28,T=28,B=75,dy=h-T-B;
+ const vmin=Math.min(median,...values),vmax=Math.max(median,...values),span=vmax-vmin||1,lo=vmin-span*.16,hi=vmax+span*.16;
+ const px=i=>L+i*(w-L-R)/Math.max(1,clean.length-1),py=y=>T+(hi-y)*dy/(hi-lo);
+ const xTicks=[...new Set([0,Math.round((clean.length-1)/4),Math.round((clean.length-1)/2),Math.round((clean.length-1)*.75),clean.length-1])];
+ const ticks=Array.from({length:5},(_,i)=>lo+(hi-lo)*i/4);
+ let svg='<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="Run chart: measured values by time or sequence; blue measurement line and green median reference line" style="width:100%;max-width:900px">';
+ svg+=ticks.map(t=>'<line x1="'+L+'" x2="'+(w-R)+'" y1="'+py(t)+'" y2="'+py(t)+'" stroke="#e5ecf4"/><text x="'+(L-12)+'" y="'+(py(t)+4)+'" font-size="12" fill="#708099" text-anchor="end">'+esc(Number(t.toPrecision(4)))+'</text>').join('');
+ svg+='<line x1="'+L+'" x2="'+(w-R)+'" y1="'+py(median)+'" y2="'+py(median)+'" stroke="#168d75" stroke-width="2" stroke-dasharray="7 6"/><text x="'+(w-R)+'" y="'+(py(median)-7)+'" font-size="12" text-anchor="end" fill="#168d75">Median '+esc(median.toFixed(3))+'</text>';
+ svg+='<polyline fill="none" stroke="#3266ad" stroke-width="3" points="'+values.map((v,i)=>px(i)+','+py(v)).join(' ')+'"/>';
+ svg+=clean.map((p,i)=>'<circle cx="'+px(i)+'" cy="'+py(p.y)+'" r="4" fill="#3266ad"><title>'+esc(p.label)+': '+esc(p.y)+'</title></circle>').join('');
+ svg+=xTicks.map(i=>'<text x="'+px(i)+'" y="'+(h-43)+'" text-anchor="middle" fill="#687d99" font-size="10">'+esc(clean[i].label.slice(0,18))+'</text>').join('');
+ svg+='<text x="'+(w/2)+'" y="'+(h-12)+'" font-size="12" text-anchor="middle" fill="#506982">'+(selection.order?'Selected observation time / order':'Saved observation sequence')+'</text></svg>';
+ return {summary:'Run Chart: saved observations in process order',metrics:{observations:values.length,median,mean:avg,minimum:Math.min(...values),maximum:Math.max(...values),runs_ignoring_median_ties:runs,longest_same_side_sequence:maxShift},svg,at:new Date().toISOString(),warning:'Run charts use a median reference line; this is NOT a Shewhart control chart. Consecutive sequences and run counts are descriptive screening information. Validate time order, sampling and special-cause patterns before concluding that the process changed.'}
+}
+
+return {resetRunDraft,updateRunDraft,filledRunDraft,clearRunDraft,addRunDraftRows,renderRunChartWorkspace,computeRunChart};
+})(DataLib);
+
+
+const {parseTypedValue,rowFromInputs,suggestColumnType,openBuilder,handleBuilderAction,renderDataLibrary} = DataLib;
+
+const {isSPC,methodPolicy,methodPanel,computeSPC} = StatLib;
+
+const {resetRunDraft,updateRunDraft,filledRunDraft,clearRunDraft,addRunDraftRows,renderRunChartWorkspace,computeRunChart} = RunChart;
+
+
+
+
+
+
+const SB_URL='https://gibsgwfuvuxfgicpvybm.supabase.co';
+const SB_KEY='sb_publishable_hSQ_KrXAJjOYpZuCW8Q_0Q_2tZVC_g6';
+const db=createClient(SB_URL,SB_KEY);
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const P=['Define','Measure','Analyze','Improve','Control'];
+const intro={
+ Define:'Define the problem, understand its context, establish the business case and agree on what success means.',
+ Measure:'Define reliable KPIs, collect trustworthy observations and establish baseline performance.',
+ Analyze:'Explore variation, test hypotheses and validate the root causes supported by evidence.',
+ Improve:'Generate and test countermeasures, run pilots and document measurable improvement.',
+ Control:'Standardize the solution, monitor process behavior and transfer ownership of sustained performance.'
+};
+const A={
+ projects:'sigma_studio_projects',phases:'sigma_studio_phases',kpis:'sigma_studio_kpis',datasets:'sigma_studio_datasets',
+ rows:'sigma_studio_data_rows',tools:'sigma_studio_tools',actions:'sigma_studio_actions',files:'sigma_studio_files'
+};
+const fields=(...rows)=>rows.map(row=>{let [key,label,type]=row.split('|');return {key,label,type:type||'text'}});
+const METHODS=[
+ ['charter','Define','Project Charter','form','Define the issue, scope, baseline and business justification.',fields('problem|What is happening?|textarea','where|Where is it happening?','since|Since when?','discovery|How was it detected?','impact|Impact on Safety, Quality, Cost and Delivery|textarea','baseline|Current baseline','target|Target','justification|Business case|textarea','scope|In scope|textarea','outscope|Out of scope|textarea','benefit|Expected benefit|textarea')],
+ ['sipoc','Define','SIPOC','table','Map suppliers, inputs, process steps, outputs and customers.',fields('supplier|Supplier','input|Input','process|Process step','output|Output','customer|Customer')],
+ ['voc','Define','Voice of Customer','table','Capture customer needs and measurable expectations.',fields('customer|Customer','need|Need or complaint','source|Source','priority|Priority','ctq|Related CTQ')],
+ ['ctq','Define','CTQ Tree','table','Translate customer needs into measurable requirements.',fields('need|Customer need','driver|Quality driver','ctq|CTQ measure','target|Target')],
+ ['stakeholder','Define','Stakeholder Matrix','table','Clarify stakeholder influence, interest and engagement.',fields('stakeholder|Stakeholder','role|Role','influence|Influence','interest|Interest','plan|Engagement plan')],
+ ['raci','Define','RACI','table','Identify who is responsible, accountable, consulted and informed.',fields('activity|Activity','responsible|Responsible','accountable|Accountable','consulted|Consulted','informed|Informed')],
+ ['process_map','Define','Process Map','table','Sequence current process steps and identify handoffs.',fields('step|Step #|number','activity|Activity','owner|Owner','input|Input','output|Output','issue|Issue or waste')],
+ ['5w2h','Define','5W2H Problem Definition','form','Clarify what, why, where, when, who, how and how much.',fields('what|What?','why|Why is this important?','where|Where?','when|When?','who|Who is affected?','how|How was it discovered?','howmuch|How much impact?')],
+ ['copq','Define','Cost of Poor Quality','table','Capture cost drivers and financial impact.',fields('category|Cost category','description|Description','frequency|Frequency|number','unitcost|Cost per event|number','annual|Annual impact|number')],
+ ['plan','Measure','Data Collection Plan','table','Define operational definitions, sources and sampling.',fields('kpi|KPI','definition|Operational definition','source|Source','frequency|Frequency','owner|Owner','unit|Unit')],
+ ['checksheet','Measure','Check Sheet','table','Record observed occurrences with categories and periods.',fields('date|Date|date','category|Defect category','count|Count|number','shift|Shift','note|Notes')],
+ ['msa','Measure','Measurement System Study','table','Plan and record measurement system evaluation.',fields('part|Part','operator|Operator','trial|Trial|number','value|Measured value|number','reference|Reference value|number')],
+ ['gagerr','Measure','Gage R&R Data Collection','table','Collect repeated part/operator trials for subsequent validated Gage R&R analysis.',fields('part|Part','operator|Operator','trial|Trial|number','measurement|Measurement|number')],
+ ['baseline','Measure','Descriptive Statistics','calc','Calculate mean, median, variation and range from numeric observations.'],
+ ['hist','Measure','Histogram','calc','Inspect distribution of numerical measurements.'],
+ ['run','Measure','Run Chart','calc','Inspect observations in sequence over time.'],
+ ['normal','Measure','Jarque–Bera Normality Screen','calc','Calculate Jarque–Bera statistic and an asymptotic p-value.'],
+ ['capability','Measure','Capability (overall s)','calc','Estimate Cp/Cpk and Pp/Ppk using overall sample SD; interpret only with assumptions checked.'],
+ ['dpmo','Measure','Defects per Million Opportunities','calc','Calculate DPMO from defect counts, unit counts and opportunities per unit.'],
+ ['imr_m','Measure','I–MR Control Chart','calc','Calculate individuals chart and moving-range limits.'],
+ ['pareto','Analyze','Pareto Analysis','calc','Rank defect categories by count or severity and calculate cumulative percentages.'],
+ ['scatter','Analyze','Regression & Correlation','calc','Fit a simple least-squares regression with observed paired data.'],
+ ['ttest','Analyze','Welch Two-Sample t-Test','calc','Test difference in means between two independent groups.'],
+ ['anova','Analyze','One-Way ANOVA','calc','Test group mean differences for a single factor.'],
+ ['fishbone','Analyze','6M Fishbone Investigation','table','Document possible causes across People, Method, Machine, Material, Measurement, Environment.',fields('category|6M category','possible|Possible cause','evidence|Evidence','status|Status','owner|Owner')],
+ ['why5','Analyze','5 Whys','table','Investigate an observed issue through causal questions and evidence.',fields('level|Why #|number','answer|Answer','evidence|Evidence','validation|Validation status')],
+ ['fmea','Analyze','Process FMEA','table','Score failure modes and assign risk-reduction actions.',fields('step|Process step','failure|Failure mode','effect|Effect','severity|Severity 1–10|number','cause|Cause','occurrence|Occurrence 1–10|number','detection|Detection 1–10|number','action|Recommended action','owner|Owner')],
+ ['causematrix','Analyze','Cause and Effect Matrix','table','Rate influence of input factors on outputs.',fields('factor|Input factor','output|Output/CTQ','weight|Importance|number','relation|Relation 0/1/3/9|number','evidence|Evidence')],
+ ['doe','Analyze','Experiment Design','table','Plan factors, levels, runs and measured responses.',fields('run|Run|number','factorA|Factor A','factorB|Factor B','response|Response|number','notes|Notes')],
+ ['pdca','Improve','PDCA Cycle','form','Record Plan–Do–Check–Act iterations.',fields('plan|PLAN: prediction and intervention|textarea','do|DO: what was performed?|textarea','check|CHECK: measured results and evidence|textarea','act|ACT: standardize, adapt or repeat|textarea')],
+ ['pilot','Improve','Pilot Test Plan','table','Define measurable pilots, validation criteria and outcomes.',fields('step|Pilot step','hypothesis|Expected outcome','metric|KPI','baseline|Baseline','target|Target','result|Actual result','decision|Decision')],
+ ['solutions','Improve','Solution Selection Matrix','table','Evaluate candidate solutions against benefit, effort and risk.',fields('solution|Solution','rootcause|Root cause','benefit|Benefit 1–5|number','effort|Effort 1–5|number','risk|Risk 1–5|number','owner|Owner')],
+ ['kaizen','Improve','Kaizen Action Plan','table','Capture improvement opportunities and assign owners.',fields('waste|Waste observed','countermeasure|Countermeasure','owner|Owner','due|Due date|date','verified|Verified result')],
+ ['pokayoke','Improve','Poka-Yoke Design','table','Specify an error-proofing intervention and how it will be verified.',fields('error|Error mode','mechanism|Prevent/detect method','test|Validation test','result|Result','owner|Owner')],
+ ['5s','Improve','5S Audit','table','Record observations, scores and corrective actions.',fields('area|Area','S|S category','score|Score 0–5|number','observation|Observation','action|Action')],
+ ['smed','Improve','SMED Analysis','table','Convert internal changeover tasks to external activities.',fields('step|Changeover step','type|Internal/External','minutes|Minutes|number','change|Proposed change','newminutes|Target minutes|number')],
+ ['controlplan','Control','Control Plan','table','Connect characteristics to methods, frequency and reaction plans.',fields('process|Process step','ctq|KPI / CTQ','spec|Specification / target','method|Measurement and control','frequency|Frequency','owner|Owner','reaction|Reaction plan')],
+ ['standard','Control','Standard Work','table','Document agreed repeatable process steps.',fields('step|Step #|number','instruction|Standard instruction','owner|Role','criterion|Acceptance criterion','reference|Reference document')],
+ ['reaction','Control','Reaction Plan','table','Specify who responds to signals and how.',fields('signal|Signal or rule','action|Immediate reaction','owner|Owner','escalation|Escalation','evidence|Required evidence')],
+ ['audit','Control','Control Audit Checklist','table','Audit sustainability, responsibilities and follow-up.',fields('item|Audit question','result|Pass/Fail','owner|Auditor','date|Date|date','finding|Finding','action|Corrective action')],
+ ['sop','Control','SOP / Training Record','form','Document standard procedure, responsibility and training.',fields('purpose|Purpose|textarea','procedure|Standard procedure|textarea','responsible|Process owner','training|Training plan|textarea','revision|Revision','approval|Approval evidence')],
+ ['imr_c','Control','I–MR Monitoring Chart','calc','Control-phase individuals / moving-range chart.'],
+ ['pchart','Control','p Control Chart','calc','Calculate p chart from defective units and varying subgroup sizes.'],
+ ['xbar','Control','X-bar / R Control Chart','calc','Monitor equal-sized rational subgroups of continuous observations.']
+].map(([key,phase,title,kind,desc,columns])=>({key,phase,title,kind,desc,columns:columns||[]}));
+METHODS.push(
+ {key:'npchart',phase:'Control',title:'np Control Chart',kind:'calc',desc:'Monitor defective-unit counts at constant sample size.',columns:[]},
+ {key:'cchart',phase:'Control',title:'c Control Chart',kind:'calc',desc:'Monitor defect counts per constant-size inspection unit.',columns:[]},
+ {key:'uchart',phase:'Control',title:'u Control Chart',kind:'calc',desc:'Monitor defect rates with varying exposure or opportunity size.',columns:[]}
+);
+const S={user:null,projects:[],project:null,page:'projects',phase:'Define',phases:[],kpis:[],datasets:[],rows:[],tools:[],actions:[],files:[],dataset:null,tool:null,editor:null,search:'',notice:'',loading:false};
+let busy=false;
+function note(s){S.notice=s;let el=$('#toast');if(el){el.textContent=s;el.hidden=false;setTimeout(()=>{if(el)el.hidden=true},3500)}}
+function date(v){return v?new Date(v).toLocaleDateString():'—'}
+function uid(){return crypto.randomUUID()}
+function blobDownload(name,text,type='text/plain'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([text],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),3000)}
+function csvCell(v){const s=String(v??'');return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+function csvSerialize(data){return data.map(row=>row.map(csvCell).join(',')).join('\r\n')}
+function detectCSVDelimiter(t){
+ const first=String(t).replace(/^\uFEFF/,'').split(/\r?\n/).find(x=>x.trim())||'';
+ const choices=[',',';','\t'];let best=',',highest=-1;
+ for(const sep of choices){let n=0,quoted=false;for(let i=0;i<first.length;i++){let ch=first[i];if(ch==='"'){if(quoted&&first[i+1]==='"')i++;else quoted=!quoted}else if(ch===sep&&!quoted)n++}if(n>highest){highest=n;best=sep}}
+ return best
+}
+function parseCSV(text){
+ const t=String(text).replace(/^\uFEFF/,'');const sep=detectCSVDelimiter(t),out=[],row=[];let cell='',quote=false;
+ for(let i=0;i<t.length;i++){
+  let c=t[i];if(quote){if(c==='"'&&t[i+1]==='"'){cell+='"';i++}else if(c==='"')quote=false;else cell+=c}
+  else if(c==='"')quote=true;
+  else if(c===sep){row.push(cell);cell=''}
+  else if(c==='\n'){row.push(cell.replace(/\r$/,''));out.push([...row]);row.length=0;cell=''}
+  else cell+=c;
+ }
+ if(quote)throw Error('CSV has an unmatched double quote. Check the file format.');
+ if(cell.length||row.length){row.push(cell);out.push([...row])}
+ return out.filter(r=>r.some(v=>String(v).trim()))
+}
+
+const mean=x=>x.reduce((a,b)=>a+b,0)/x.length;
+const stdev=x=>Math.sqrt(x.reduce((a,v)=>a+(v-mean(x))**2,0)/(x.length-1));
+const sum=x=>x.reduce((a,b)=>a+b,0);
+function nums(rows,k){return rows.map(r=>r.values[k]).filter(v=>v!==null&&v!==undefined&&String(v).trim()!=='').map(Number).filter(Number.isFinite)}
+function combinations(rows,x,y){return rows.filter(r=>r.values[y]!==null&&r.values[y]!==undefined&&String(r.values[y]).trim()!=='').map(r=>({x:r.values[x],y:Number(r.values[y])})).filter(r=>r.x!==''&&r.x!=null&&Number.isFinite(r.y))}
+function gamma(z){const p=[0.9999999999998099,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];if(z<.5)return Math.log(Math.PI)-Math.log(Math.sin(Math.PI*z))-gamma(1-z);z-=1;let a=p[0];for(let i=1;i<9;i++)a+=p[i]/(z+i);let t=z+7.5;return .5*Math.log(2*Math.PI)+(z+.5)*Math.log(t)-t+Math.log(a)}
+function cfBeta(a,b,x){let qab=a+b,qap=a+1,qam=a-1,c=1,d=1-qab*x/qap;if(Math.abs(d)<1e-30)d=1e-30;d=1/d;let h=d;for(let m=1;m<=180;m++){let m2=2*m,aa=m*(b-m)*x/((qam+m2)*(a+m2));d=1+aa*d;if(Math.abs(d)<1e-30)d=1e-30;c=1+aa/c;if(Math.abs(c)<1e-30)c=1e-30;d=1/d;h*=d*c;aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));d=1+aa*d;if(Math.abs(d)<1e-30)d=1e-30;c=1+aa/c;if(Math.abs(c)<1e-30)c=1e-30;d=1/d;let del=d*c;h*=del;if(Math.abs(del-1)<3e-8)break}return h}
+function regBeta(x,a,b){if(x<=0)return 0;if(x>=1)return 1;let f=Math.exp(gamma(a+b)-gamma(a)-gamma(b)+a*Math.log(x)+b*Math.log(1-x));return x<(a+1)/(a+b+2)?f*cfBeta(a,b,x)/a:1-f*cfBeta(b,a,1-x)/b}
+function pT(t,df){return regBeta(df/(df+t*t),df/2,.5)}
+function pF(f,d1,d2){return regBeta(d2/(d2+d1*f),d2/2,d1/2)}
+const fmt=n=>Number.isFinite(Number(n))?Number(n).toLocaleString(undefined,{maximumFractionDigits:4}):'—';
+function svgBase(w=720,h=285){return {w,h,l:46,r:12,t:18,b:54,iw:w-58,ih:h-72}}
+function svgBar(labels,values){const b=svgBase(),mx=Math.max(...values,1),gap=b.iw/Math.max(labels.length,1);return '<svg viewBox="0 0 720 285" role="img" aria-label="Bar chart"><line x1="46" y1="231" x2="708" y2="231" stroke="#afbdce"/>'+values.map((v,i)=>{const x=46+i*gap+gap*.15,y=231-v/mx*200;return '<rect x="'+x+'" y="'+y+'" width="'+Math.max(2,gap*.7)+'" height="'+(231-y)+'" rx="3" fill="#416cb8"/><text text-anchor="middle" font-size="10" fill="#53667d" x="'+(x+gap*.35)+'" y="244">'+esc(String(labels[i]).slice(0,13))+'</text><text text-anchor="middle" font-size="10" fill="#234e83" x="'+(x+gap*.35)+'" y="'+Math.max(12,y-5)+'">'+fmt(v)+'</text>'}).join('')+'</svg>'}
+function svgLine(values,limits={}){const b=svgBase(),all=[...values,...Object.values(limits).filter(Number.isFinite)],lo=Math.min(...all),hi=Math.max(...all);const range=hi-lo||1;let xp=i=>46+i*662/Math.max(1,values.length-1),yp=v=>224-(v-lo)/range*190;let s='<svg viewBox="0 0 720 285" role="img" aria-label="Time series chart"><line x1="46" y1="231" x2="708" y2="231" stroke="#aebed0"/>';for(let [k,v] of Object.entries(limits)){if(!Number.isFinite(v))continue;s+='<line x1="46" y1="'+yp(v)+'" x2="708" y2="'+yp(v)+'" stroke="'+(k==='center'?'#16977d':'#be6c6c')+'" stroke-dasharray="6 4"/><text x="50" y="'+(yp(v)-4)+'" font-size="10" fill="#6a7d8e">'+esc(k)+' '+fmt(v)+'</text>'}s+='<polyline fill="none" stroke="#315fb3" stroke-width="2.4" points="'+values.map((v,i)=>xp(i)+','+yp(v)).join(' ')+'"/>';s+=values.map((v,i)=>'<circle cx="'+xp(i)+'" cy="'+yp(v)+'" r="3" fill="#315fb3"/>').join('');return s+'</svg>'}
+function svgScatter(pairs,slope,intercept){const xs=pairs.map(p=>p.x),ys=pairs.map(p=>p.y),mnx=Math.min(...xs),mxx=Math.max(...xs),mny=Math.min(...ys),mxy=Math.max(...ys);let X=v=>46+((v-mnx)/(mxx-mnx||1))*650,Y=v=>224-((v-mny)/(mxy-mny||1))*190;return '<svg viewBox="0 0 720 285" role="img" aria-label="Scatterplot"><line x1="46" y1="231" x2="708" y2="231" stroke="#ccc"/>'+pairs.map(p=>'<circle cx="'+X(p.x)+'" cy="'+Y(p.y)+'" r="4" fill="#547bbb"/>').join('')+'<line x1="'+X(mnx)+'" y1="'+Y(slope*mnx+intercept)+'" x2="'+X(mxx)+'" y2="'+Y(slope*mxx+intercept)+'" stroke="#c45c5c" stroke-width="2.4"/></svg>'}
+function result(summary,metrics,svg='',warning=''){return {summary,metrics,svg,warning,at:new Date().toISOString()}}
+function calculate(key,rows,c){
+ const d=rows.map(r=>r.values),x=c.x,y=c.y;
+ if(['baseline','hist','run','normal','capability','imr_m','imr_c'].includes(key)){
+ const v=nums(rows,y);if(v.length<2)throw Error('Select a numeric measurement column with at least two values.');
+ const avg=mean(v),sd=stdev(v),min=Math.min(...v),max=Math.max(...v);
+ if(key==='baseline')return result('Descriptive statistics',{n:v.length,mean:avg,median:[...v].sort((a,b)=>a-b)[Math.floor(v.length/2)],sample_SD:sd,min,max},svgLine(v),'Sample standard deviation uses n−1; verify measurement validity and time order.');
+ if(key==='hist'){let bins=Math.max(4,Math.min(14,Math.ceil(Math.sqrt(v.length)))),counts=Array(bins).fill(0),width=(max-min||1)/bins;for(let a of v)counts[Math.min(bins-1,Math.floor((a-min)/width))]++;return result('Histogram of '+y,{n:v.length,mean:avg,sample_SD:sd},svgBar(counts.map((_,i)=>fmt(min+i*width)),counts))}
+ if(key==='run')return result('Run chart of '+y,{n:v.length,mean:avg},svgLine(v,{center:avg}),'Order uses dataset row creation order; check for non-random patterns.');
+ if(key==='normal'){if(v.length<8)throw Error('Use at least 8 observations for this screening test.');let m2=mean(v.map(z=>(z-avg)**2)),m3=mean(v.map(z=>(z-avg)**3)),m4=mean(v.map(z=>(z-avg)**4)),skew=m3/m2**1.5,kurt=m4/m2**2,jb=v.length/6*(skew**2+((kurt-3)**2)/4);return result('Jarque–Bera normality screening',{n:v.length,JB:jb,p_value:Math.exp(-jb/2),skewness:skew,kurtosis:kurt},svgBar(['Observed skew','Excess kurtosis'],[Math.abs(skew),Math.abs(kurt-3)]),'Asymptotic test, potentially unreliable for small samples. Check graphical diagnostics and process context.')}
+ if(key==='capability'){let l=Number(c.lsl),u=Number(c.usl);if(!Number.isFinite(l)||!Number.isFinite(u)||u<=l||sd<=0)throw Error('Enter valid LSL < USL and use nonconstant measurements.');return result('Overall-sigma capability estimate',{n:v.length,mean:avg,SD:sd,Pp:(u-l)/(6*sd),Ppk:Math.min((u-avg)/(3*sd),(avg-l)/(3*sd))},svgLine(v,{USL:u,LSL:l,center:avg}),'Uses overall sample SD, so only Pp/Ppk are estimated. Cp/Cpk require a defensible estimate of within-subgroup sigma. Confirm process stability and distribution before capability claims.')}
+ let mr=v.slice(1).map((n,i)=>Math.abs(n-v[i])),mbar=mean(mr);return result('Individuals / Moving Range chart',{n:v.length,CL_X:avg,UCL_X:avg+2.66*mbar,LCL_X:avg-2.66*mbar,MR_bar:mbar,UCL_MR:3.267*mbar},svgLine(v,{center:avg,UCL:avg+2.66*mbar,LCL:avg-2.66*mbar}),'I-MR limits assume meaningful sequence and reasonably independent, stable observations. Review special-cause signals before using limits.');
+ }
+ if(key==='pareto'){if(!x)throw Error('Select a categorical column.');let m=new Map;for(let r of d){let cat=String(r[x]??'').trim();if(!cat)continue;let val=y?Number(r[y]):1;if(!Number.isFinite(val)||val<0)continue;m.set(cat,(m.get(cat)||0)+val)}let sorted=[...m].sort((a,b)=>b[1]-a[1]);if(!sorted.length)throw Error('No valid category counts.');let tot=sum(sorted.map(a=>a[1])),cum=0;return result('Pareto distribution',{total:tot,categories:sorted.map(([category,value])=>({category,value,cumulative_percent:tot?100*(cum+=value)/tot:0}))},svgBar(sorted.map(a=>a[0]),sorted.map(a=>a[1])),'Counts are summed per category; do not use defect counts as defective-unit counts.')}
+ if(key==='scatter'){let pairs=combinations(rows,x,y).map(p=>({x:Number(p.x),y:p.y})).filter(p=>Number.isFinite(p.x));if(pairs.length<3)throw Error('At least three valid paired numerical observations are required.');let ax=mean(pairs.map(p=>p.x)),ay=mean(pairs.map(p=>p.y)),xx=sum(pairs.map(p=>(p.x-ax)**2)),yy=sum(pairs.map(p=>(p.y-ay)**2)),cov=sum(pairs.map(p=>(p.x-ax)*(p.y-ay)));if(!xx||!yy)throw Error('Both variables must vary.');let slope=cov/xx,intercept=ay-slope*ax,r2=cov**2/(xx*yy);return result('Simple least-squares regression',{n:pairs.length,intercept,slope,R_squared:r2,correlation:cov/Math.sqrt(xx*yy)},svgScatter(pairs,slope,intercept),'Association is not proof of causality; inspect residuals and potential confounders.')}
+ if(key==='ttest'||key==='anova'){let pairs=combinations(rows,x,y),groups={};for(let p of pairs)(groups[p.x]??=[]).push(p.y);let ks=Object.keys(groups),all=Object.values(groups).flat();if(ks.length<2)throw Error('At least two nonempty groups are needed.');if(key==='ttest'){if(ks.length!==2||Object.values(groups).some(a=>a.length<2))throw Error('Welch t-test requires exactly two groups with at least two observations each.');let a=groups[ks[0]],b=groups[ks[1]],sa=stdev(a)**2,sb=stdev(b)**2,aa=sa/a.length,bb=sb/b.length,t=(mean(a)-mean(b))/Math.sqrt(aa+bb),df=(aa+bb)**2/(aa**2/(a.length-1)+bb**2/(b.length-1));if(!Number.isFinite(t)||!Number.isFinite(df))throw Error('Variance is insufficient for the test.');return result('Welch independent two-sample t-test',{group_A:ks[0],group_B:ks[1],mean_A:mean(a),mean_B:mean(b),t,df,p_value:pT(t,df)},svgBar(ks,ks.map(k=>mean(groups[k]))),'Two-sided p-value; requires independent observations and suitable study design.')}
+ if(Object.values(groups).some(a=>a.length<2))throw Error('Each group needs at least two observations.');let gm=mean(all),between=sum(ks.map(k=>groups[k].length*(mean(groups[k])-gm)**2)),within=sum(ks.map(k=>sum(groups[k].map(v=>(v-mean(groups[k]))**2)))),df1=ks.length-1,df2=all.length-ks.length;if(within<=0)throw Error('Within-group variance must be greater than zero.');let F=(between/df1)/(within/df2);return result('One-way ANOVA',{groups:ks.length,N:all.length,F,df_between:df1,df_within:df2,p_value:pF(F,df1,df2)},svgBar(ks,ks.map(k=>mean(groups[k]))),'Check independence, residual behavior and variance assumptions. A significant F does not indicate which groups differ.')}
+ if(key==='dpmo'){let defects=nums(rows,y),units=nums(rows,x),op=Number(c.opportunities);if(defects.length!==units.length||!defects.length||!Number.isInteger(op)||op<1)throw Error('Select defect and produced-quantity fields with complete rows, and an integer opportunity count ≥1.');let total= sum(defects),quantity=sum(units);if(quantity<=0)throw Error('Total units must be positive.');return result('Defects per million opportunities',{defects:total,units:quantity,opportunities_per_unit:op,DPMO:1e6*total/(quantity*op)},'','One unit can contain multiple defects. Validate the definition of an opportunity.')}
+ if(key==='pchart'){let values=d.map(r=>({defect:Number(r[y]),n:Number(r[x])})).filter(r=>Number.isInteger(r.defect)&&Number.isInteger(r.n)&&r.n>0&&r.defect>=0&&r.defect<=r.n);if(values.length<2)throw Error('Select defective-unit counts and subgroup-size columns.');let p=sum(values.map(a=>a.defect))/sum(values.map(a=>a.n)),rates=values.map(a=>a.defect/a.n),upper=values.map(a=>Math.min(1,p+3*Math.sqrt(p*(1-p)/a.n))),lower=values.map(a=>Math.max(0,p-3*Math.sqrt(p*(1-p)/a.n)));return result('p chart with subgroup-specific limits',{n:values.length,CL:p,UCL_by_subgroup:upper,LCL_by_subgroup:lower,outside_limits:rates.filter((r,i)=>r>upper[i]||r<lower[i]).length},svgLine(rates,{center:p}),'Varying subgroup sizes produce varying limits, listed in the result. The common center line in the preview does not depict all variable limits.')}
+ if(key==='xbar'){let pairs=combinations(rows,x,y),groups={};for(let p of pairs)(groups[p.x]??=[]).push(p.y);let g=Object.values(groups),ks=Object.keys(groups),n=g[0]?.length;if(ks.length<2||n<2||n>10||g.some(a=>a.length!==n))throw Error('Use ≥2 subgroups with identical sample size 2–10 and continuous measurements.');let a2={2:1.88,3:1.023,4:.729,5:.577,6:.483,7:.419,8:.373,9:.337,10:.308}[n],d4={2:3.267,3:2.574,4:2.282,5:2.114,6:2.004,7:1.924,8:1.864,9:1.816,10:1.777}[n],means=g.map(a=>mean(a)),ranges=g.map(a=>Math.max(...a)-Math.min(...a)),cl=mean(means),rbar=mean(ranges);return result('X-bar / R chart',{groups:ks.length,n_per_group:n,CL_Xbar:cl,UCL_Xbar:cl+a2*rbar,LCL_Xbar:cl-a2*rbar,Rbar:rbar,UCL_R:d4*rbar},svgLine(means,{center:cl,UCL:cl+a2*rbar,LCL:cl-a2*rbar}),'Subgroups must represent rational sampling over time; separate R chart statistics are listed but the plot depicts X-bar only.')}
+ throw Error('This method is a structured workbook, not a calculator.');
+}
+function method(k){return METHODS.find(m=>m.key===k)}
+function head(title,desc,extra=''){return '<div class="pagehead"><div><div class="caps">Six Sigma Studio</div><h1>'+esc(title)+'</h1><p>'+esc(desc)+'</p></div><div class="buttons">'+extra+'</div></div>'}
+function btn(text,act,cl=''){return '<button class="btn '+cl+'" data-act="'+esc(act)+'">'+text+'</button>'}
+function badge(status){return '<span class="badge '+(status==='completed'||status==='done'?'done':'')+'">'+esc(status)+'</span>'}
+function input(label,name,v='',type='text'){return '<div class="field"><label>'+esc(label)+'</label>'+(type==='textarea'?'<textarea name="'+esc(name)+'">'+esc(v)+'</textarea>':'<input name="'+esc(name)+'" type="'+esc(type)+'" value="'+esc(v)+'">')+'</div>'}
+function select(label,name,options,current){return '<div class="field"><label>'+esc(label)+'</label><select name="'+esc(name)+'">'+options.map(([v,t])=>'<option value="'+esc(v)+'" '+(String(current??'')===String(v)?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select></div>'}
+function q(n){return Number(n)||0}
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,55)||'dataset'}
+function shell(inner){const nav=[['projects','⌂','Projects'],['overview','▦','Overview'],...P.map((p,i)=>[p,'0'+(i+1),p]),['data','▤','Data Hub'],['kpis','◉','KPI Library'],['actions','✓','Actions'],['files','▣','Files'],['report','▤','Report']];$('#app').innerHTML='<div class="app"><aside class="side"><div class="brand"><div class="logo">σ</div><div><strong>Six Sigma Studio</strong><small>Connected Improvement Workspace</small></div></div><nav><div class="nav-label">Workspace</div>'+nav.map(([k,icon,t])=>'<button class="nav '+(S.page===k?'active':'')+'" data-nav="'+k+'"><span>'+icon+'</span>'+t+'</button>').join('')+'</nav><div class="sidefoot">🔒 Authenticated Supabase storage<br>Separate Six Sigma tables</div></aside><div class="workspace"><header class="top"><div><small>Current project</small><span class="title">'+(S.project?esc(S.project.name):'Project Portfolio')+'</span></div><div class="top-right"><select id="project-switch" aria-label="Select project"><option value="">Choose a project</option>'+S.projects.map(p=>'<option value="'+p.id+'" '+(S.project?.id===p.id?'selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select>'+btn('+ New project','new-project','primary')+btn('Sign out','logout')+'</div></header><main class="main">'+inner+'<div class="footerline">Real Supabase tables • Every tool instance belongs to its selected project • Statistical results retain inputs and dataset ID.</div></main></div></div><div id="toast" class="workspace-save" hidden></div><div id="modal-root"></div>'}
+function render(){if(!S.user){authView();return}let page=S.page;if(page!=='projects'&&!S.project){page='projects';S.page=page}let inner=page==='projects'?projectPage():page==='overview'?overview():P.includes(page)?phasePage(page):page==='data'?dataPage():page==='kpis'?kpiPage():page==='actions'?actionPage():page==='files'?filePage():reportPage();shell(inner)}
+function authView(message=''){ $('#app').innerHTML='<div class="auth"><div class="card"><div class="caps">Secure workspace</div><h1>Six Sigma Studio</h1><p class="muted">Sign in to access your private Six Sigma projects and their saved data.</p><form id="auth-form"><label>Email</label><input type="email" name="email" required autocomplete="email"><label>Password</label><input type="password" name="password" required minlength="6" autocomplete="current-password"><div class="buttons"><button class="btn primary" name="mode" value="login">Sign in</button><button class="btn" name="mode" value="signup">Create account</button></div></form><p class="small muted">'+esc(message)+'</p><p class="tiny muted">If email confirmation is enabled, check your inbox before signing in. Project data is protected by owner-based row-level security.</p></div></div>'}
+async function request(table,op,args){let r;if(op==='read')r=await db.from(A[table]).select('*').eq('project_id',S.project.id).order('created_at',{ascending:true}).limit(5000);else if(op==='insert')r=await db.from(A[table]).insert(args).select().single();else if(op==='update')r=await db.from(A[table]).update(args.data).eq('id',args.id).eq('project_id',S.project.id).select().single();else if(op==='delete')r=await db.from(A[table]).delete().eq('id',args.id).eq('project_id',S.project.id);if(r.error)throw r.error;return r.data}
+async function loadProjects(){const r=await db.from(A.projects).select('*').order('created_at',{ascending:false});if(r.error)throw r.error;S.projects=r.data||[];if(S.project){S.project=S.projects.find(p=>p.id===S.project.id)||null}if(!S.project&&S.projects.length)S.project=S.projects[0]}
+async function loadProject(){if(!S.project)return;const tables=['phases','kpis','datasets','tools','actions','files'];const rs=await Promise.all(tables.map(t=>request(t,'read')));tables.forEach((t,i)=>S[t]=rs[i]);if(S.dataset&&!S.datasets.some(x=>x.id===S.dataset.id))S.dataset=null;if(S.tool&&!S.tools.some(x=>x.id===S.tool.id))S.tool=null;await loadRows()}
+async function loadRows(){if(!S.project)return;let r=await db.from(A.rows).select('*').eq('project_id',S.project.id).order('sequence_no',{ascending:true}).limit(5000);if(r.error)throw r.error;S.rows=r.data||[]}
+function projectPage(){return head('Project Command Center','Continue an existing project or create a new one.',btn('+ New project','new-project','primary'))+'<div class="grid cols3">'+S.projects.map(p=>'<div class="card projectbox" data-open-project="'+p.id+'"><div class="row">'+badge(p.methodology||'DMAIC')+'<span class="tiny muted">'+date(p.created_at)+'</span></div><h3>'+esc(p.name)+'</h3><p class="muted small">'+esc((p.objective||'No objective yet').slice(0,170))+'</p><p class="small">📍 '+esc(p.location||'Location not defined')+'</p>'+btn('Open project →','open:'+p.id,'primary')+'</div>').join('')+'</div>'+(S.projects.length?'':'<div class="empty">No projects yet. Create your first improvement project.</div>')}
+function phasesNav(){return '<div class="phasebars">'+P.map((p,i)=>{let rec=S.phases.find(a=>a.phase===p);return '<button class="phasebar '+(S.page===p?'active':'')+' '+(rec?.status==='completed'?'completed':'')+'" data-nav="'+p+'">'+p+'<small>'+(rec?.status==='completed'?'✓ Completed':'Phase '+(i+1))+'</small></button>'}).join('')+'</div>'}
+function overview(){const completed=S.phases.filter(p=>p.status==='completed').length;return head(S.project.name,'Your connected project dashboard and current DMAIC story.',btn('Edit charter','edit-project')+btn('Project report','go-report'))+phasesNav()+'<div class="grid cols4 section">'+[['Phases completed',completed+' / 5'],['KPIs',S.kpis.length],['Tool instances',S.tools.length],['Open actions',S.actions.filter(a=>a.status!=='done').length]].map(a=>'<div class="card stat"><span>'+a[0]+'</span><strong>'+a[1]+'</strong></div>').join('')+'</div><div class="grid cols2 section"><div class="card pad"><h3>Project charter</h3><div class="listrow"><span>Location</span><b>'+esc(S.project.location||'—')+'</b></div><div class="listrow"><span>Project leader</span><b>'+esc(S.project.leader||'—')+'</b></div><div class="listrow"><span>Sponsor</span><b>'+esc(S.project.sponsor||'—')+'</b></div><div class="listrow"><span>Business objective</span><b>'+esc(S.project.objective||'—')+'</b></div><div style="margin-top:14px">'+btn('Edit project details','edit-project')+'</div></div><div class="card pad"><h3>Recent methods</h3>'+S.tools.slice(-7).reverse().map(t=>'<div class="listrow"><div><strong>'+esc(t.title)+'</strong><div class="tiny muted">'+esc(t.phase)+'</div></div>'+btn('Open','tool:'+t.id)+'</div>').join('')+(S.tools.length?'':'<p class="muted">No methods added yet.</p>')+'</div></div>'}
+function phasePage(p){const list=METHODS.filter(t=>t.phase===p&&t.title.toLowerCase().includes(S.search.toLowerCase())),instances=S.tools.filter(t=>t.phase===p),phase=S.phases.find(t=>t.phase===p),count=instances.filter(t=>t.status==='completed').length;
+ return '<div class="intro"><div><div class="caps" style="color:#bad8ff">DMAIC · '+esc(S.project.name)+'</div><h2>'+p+'</h2><p>'+intro[p]+'</p></div><div class="num">'+(P.indexOf(p)+1)+'</div></div>'+phasesNav()+'<div class="grid cols3 section"><div class="card stat"><span>Project</span><strong style="font-size:16px">'+esc(S.project.name)+'</strong></div><div class="card stat"><span>Methods added</span><strong>'+instances.length+'</strong></div><div class="card stat"><span>Methods completed</span><strong>'+count+'</strong></div></div>'+ (S.tool&&S.tool.phase===p?renderTool(): '<div class="card pad section"><div class="row"><div><h2>Methods used in this phase</h2><p class="muted small">Every method is a separate saved instance; repeat the same method as often as needed.</p></div></div>'+instances.map(t=>'<div class="listrow"><div><strong>'+esc(t.title)+'</strong><div class="tiny muted">'+esc(method(t.method_key)?.kind||'workbook')+' · '+date(t.created_at)+'</div></div><div class="buttons">'+badge(t.status)+btn('Open','tool:'+t.id)+btn('Delete','delete-tool:'+t.id,'danger small')+'</div></div>').join('')+(instances.length?'':'<p class="muted">No tools used yet. Choose one below.</p>')+'</div><div class="section row"><h2>Tool library · '+p+'</h2><div style="width:240px"><input placeholder="Search methods" id="method-search" value="'+esc(S.search)+'"></div></div><div class="grid cols3">'+list.map(t=>'<div class="card toolcard"><div class="kind">'+(t.kind==='calc'?'Live calculation':t.kind==='table'?'Editable structured table':'Guided workbook')+'</div><h3>'+esc(t.title)+'</h3><p>'+esc(t.desc)+'</p>'+btn('+ Add to project','add-tool:'+t.key,'primary')+'</div>').join('')+'</div>')
+ +'<div class="card pad section"><div class="row"><div><h2>Phase closure</h2><p class="small muted">Record a final phase conclusion. You can reopen the phase at any time.</p></div>'+badge(phase?.status||'in_progress')+'</div><textarea id="phase-conclusion" placeholder="Summarize findings, evidence, decisions and deliverables.">'+esc(phase?.conclusion||'')+'</textarea><div class="buttons section">'+btn('Save conclusion','save-phase')+btn(phase?.status==='completed'?'Reopen phase':'Mark phase completed','toggle-phase','primary')+'</div></div>'
+}
+function renderTool(){const t=S.tool,m=method(t.method_key),c=S.editor||t.content||{},cols=m.columns;
+ let data='<div class="notice">'+esc(m.desc)+'<br><strong>Project:</strong> '+esc(S.project.name)+' · <strong>Phase:</strong> '+esc(t.phase)+' · <strong>Instance ID:</strong> '+esc(t.id.slice(0,8))+'</div>';
+ if(m.kind==='table'){let rows=c.rows||[];data+='<div class="row section"><h3>Working table</h3>'+btn('+ Add row','add-workbook-row')+'</div><div class="tablewrap"><table class="table"><thead><tr>'+cols.map(f=>'<th>'+esc(f.label)+'</th>').join('')+'<th></th></tr></thead><tbody>'+rows.map((r,i)=>'<tr>'+cols.map(f=>'<td><input type="'+esc(f.type)+'" data-editor-row="'+i+'" data-editor-col="'+esc(f.key)+'" value="'+esc(r[f.key]??'')+'"></td>').join('')+'<td>'+btn('×','remove-row:'+i,'small danger')+'</td></tr>').join('')+'</tbody></table></div>'+(rows.length?'':'<p class="muted">Add rows to work with this method.</p>');if(t.method_key==='fmea'&&rows.length)data+='<div class="notice section">RPN by row: '+rows.map((r,i)=>(i+1)+': '+(q(r.severity)*q(r.occurrence)*q(r.detection))).join(' · ')+' — RPN is a screening aid, not a full AIAG-VDA Action Priority assessment.</div>'}
+ if(m.kind==='form')data+='<div class="formgrid section">'+cols.map(f=>'<div class="field '+(f.type==='textarea'?'wide':'')+'"><label>'+esc(f.label)+'</label>'+(f.type==='textarea'?'<textarea data-editor-field="'+esc(f.key)+'">'+esc(c.fields?.[f.key]||'')+'</textarea>':'<input data-editor-field="'+esc(f.key)+'" type="'+esc(f.type)+'" value="'+esc(c.fields?.[f.key]||'')+'">')+'</div>').join('')+'</div>';
+
+ if(m.kind==='calc'){
+   data+=m.key==='run'?renderRunChartWorkspace({S,btn,select}):methodPanel(m,{S,select,input,btn});
+   if(t.result?.summary&&t.dataset_id===c.dataset_id){
+     const metrics=Object.entries(t.result.metrics||{}).filter(([k,v])=>!Array.isArray(v)&&typeof v!=='object')
+      .map(([k,v])=>'<div class="card stat"><span>'+esc(k.replaceAll('_',' '))+'</span><strong style="font-size:18px">'+esc(typeof v==='number'?fmt(v):v)+'</strong></div>').join('');
+     const arrays=Object.entries(t.result.metrics||{}).filter(([k,v])=>Array.isArray(v))
+      .map(([k,v])=>'<details class="section"><summary>'+esc(k.replaceAll('_',' '))+' · '+v.length+' records</summary><div class="tablewrap"><table class="table"><tbody>'+
+         v.slice(0,200).map((value,i)=>'<tr><td>#'+(i+1)+'</td><td>'+esc(typeof value==='object'?JSON.stringify(value):typeof value==='number'?fmt(value):value)+'</td></tr>').join('')+'</tbody></table></div></details>').join('');
+     data+='<div class="card pad section"><div class="row"><div><div class="caps">Saved calculation on project data</div><h3>'+esc(t.result.summary)+'</h3><p class="muted tiny">Snapshot from '+date(t.result.at)+' · Recalculate if observations changed · Saved table: '+esc(S.datasets.find(d=>d.id===t.dataset_id)?.name||'Not available')+'</p></div>'+badge(t.status)+'</div><div class="grid cols3 section">'+metrics+'</div>'+
+       (t.result.svg?'<div class="chartarea section">'+t.result.svg+'</div>':'')+arrays+
+       (t.result.warning?'<div class="notice warn section">'+esc(t.result.warning)+'</div>':'')+'</div>';
+   }
+ }
+
+ return '<div class="card pad section"><div class="row"><div><div class="caps">'+esc(t.phase)+' · Method workspace</div><h2>'+esc(t.title)+'</h2><p class="muted tiny">Multiple instances permitted · '+esc(m.kind==='calc'?'Real calculation':m.kind==='table'?'Editable method table':'Guided structured form')+'</p></div><div class="buttons">'+badge(t.status)+btn('← Methods','close-tool')+btn('Delete','delete-tool:'+t.id,'danger small')+'</div></div><div class="section">'+data+'</div><div class="section"><div class="field"><label>Evidence-based conclusion</label><textarea id="tool-conclusion" placeholder="What did you find, and which evidence supports your interpretation?">'+esc(t.conclusion||'')+'</textarea></div></div><div class="buttons section">'+btn('Save work','save-tool','primary')+btn(t.status==='completed'?'Reopen method':'Mark method completed','complete-tool')+btn('Export method JSON','export-tool')+'</div></div>'
+}
+function liveKpi(k){if(!k.dataset_id||!k.value_field)return '<span class="muted tiny">Not linked</span>';let data=S.rows.filter(r=>r.dataset_id===k.dataset_id&&r.values[k.value_field]!==null&&r.values[k.value_field]!==undefined&&String(r.values[k.value_field]).trim()!=='');if(!data.length)return '<span class="muted tiny">No measurements</span>';let current=Number(data[data.length-1].values[k.value_field]);if(!Number.isFinite(current))return '<span class="muted tiny">Invalid value</span>';let target=Number(k.target_value),high=Number(k.target_high);let ok=k.target_value===null?null:k.direction==='at_least'?current>=target:k.direction==='at_most'?current<=target:k.target_high!==null?current>=target&&current<=high:null;return '<strong class="'+(ok===true?'success':ok===false?'dangertext':'')+'">'+fmt(current)+' '+esc(k.unit)+'</strong><div class="tiny muted">'+(ok===true?'Target met':ok===false?'Outside target':'No target')+'</div>'}
+function kpiPage(){return head('KPI Library','Define performance metrics and whether targets must be reached, not exceeded, or stay within range.',btn('+ New KPI','new-kpi','primary'))+'<div class="card pad"><div class="tablewrap"><table class="table"><thead><tr><th>Metric</th><th>Category</th><th>Baseline</th><th>Rule</th><th>Target</th><th>Current / Status</th><th>Source</th><th></th></tr></thead><tbody>'+S.kpis.map(k=>'<tr><td><strong>'+esc(k.name)+'</strong><div class="tiny muted">'+esc(k.unit)+'</div></td><td>'+esc(k.category)+'</td><td>'+fmt(k.baseline)+'</td><td>'+esc(k.direction==='at_most'?'Do not exceed':k.direction==='at_least'?'Reach or exceed':'Stay within range')+'</td><td>'+esc(k.direction==='range'?(fmt(k.target_value)+' – '+fmt(k.target_high)):fmt(k.target_value))+'</td><td>'+liveKpi(k)+'</td><td>'+esc(k.source)+'</td><td>'+btn('Edit','edit-kpi:'+k.id)+'</td></tr>').join('')+'</tbody></table></div>'+(S.kpis.length?'':'<p class="muted">Create your first KPI to define a measurable baseline and target.</p>')+'</div>'}
+function dataPage(){return renderDataLibrary({S,head,btn,esc});}
+function actionPage(){return head('Actions and Countermeasures','Track implementation actions, ownership, priorities and due dates.',btn('+ New action','new-action','primary'))+'<div class="grid cols3">'+['todo','doing','done'].map(status=>'<div class="card pad"><h3>'+({todo:'To do',doing:'In progress',done:'Completed'}[status])+'</h3>'+S.actions.filter(a=>a.status===status).map(a=>'<div class="card pad section"><strong>'+esc(a.title)+'</strong><p class="tiny muted">'+esc(a.owner_name||'Unassigned')+' · '+esc(a.phase)+' · due '+esc(a.due_date||'not set')+'</p><div class="buttons">'+btn('Edit','edit-action:'+a.id)+btn('Next →','next-action:'+a.id,'small')+'</div></div>').join('')+'</div>').join('')+'</div>'}
+function filePage(){return head('Project Evidence Files','Upload and retrieve private files. Files are stored in Supabase Storage, not inside the HTML.',btn('Upload file','upload-file','primary'))+'<div class="card pad">'+S.files.map(f=>'<div class="listrow"><div><strong>'+esc(f.title)+'</strong><div class="small muted">'+date(f.created_at)+' · '+esc(f.mime_type)+'</div></div><div class="buttons">'+btn('Download','download-file:'+f.id)+btn('Delete','delete-file:'+f.id,'danger small')+'</div></div>').join('')+(S.files.length?'':'<div class="empty">No project files uploaded.</div>')+'</div>'}
+function reportPage(){const info='<h2>Project Charter</h2><p>'+esc(S.project.objective)+'</p><p>Location: '+esc(S.project.location)+' · Leader: '+esc(S.project.leader)+'</p>';return head('Project Report','Generate a summary from actual saved data, analyses, method conclusions and controls.',btn('Download HTML report','export-report','primary'))+'<div class="card pad"><h2>'+esc(S.project.name)+'</h2>'+info+P.map(p=>'<div class="section"><h3>'+p+'</h3><div class="muted small">'+esc(S.phases.find(a=>a.phase===p)?.conclusion||'Phase conclusion not saved.')+'</div>'+S.tools.filter(t=>t.phase===p).map(t=>'<div class="listrow"><strong>'+esc(t.title)+'</strong><span class="small">'+esc(t.conclusion||'No conclusion')+'</span></div>').join('')+'</div>').join('')+'</div>'}
+function modal(inner){$('#modal-root').innerHTML='<div class="modal-layer"><div class="modal"><div class="row"><h2>Six Sigma Studio</h2>'+btn('✕','close-modal')+'</div>'+inner+'</div></div>'}
+function closeModal(){let root=$('#modal-root');if(root)root.innerHTML=''}
+function projectForm(p){p=p||{};modal('<h2>'+(p.id?'Edit project':'Create project')+'</h2><form id="project-form" data-id="'+esc(p.id||'')+'"><div class="formgrid">'+input('Project name','name',p.name||'')+input('Location / site','location',p.location||'')+input('Project leader','leader',p.leader||'')+input('Sponsor','sponsor',p.sponsor||'')+select('Methodology','methodology',['DMAIC','PDCA','A3','Kaizen','Quick Win'].map(x=>[x,x]),p.methodology||'DMAIC')+'<div class="wide">'+input('Objective / business case','objective',p.objective||'','textarea')+'</div></div><div class="buttons section"><button class="btn primary" type="submit">Save project</button></div></form>')}
+function kpiForm(k){k=k||{};modal('<h2>'+(k.id?'Edit KPI':'New KPI')+'</h2><form id="kpi-form" data-id="'+esc(k.id||'')+'"><div class="formgrid">'+input('KPI name','name',k.name||'')+input('Category','category',k.category||'Quality')+input('Unit','unit',k.unit||'')+select('Target rule','direction',[['at_most','Must not exceed (≤)'],['at_least','Must reach at least (≥)'],['range','Must stay in range']],k.direction||'at_most')+input('Baseline','baseline',k.baseline??'','number')+input('Target / lower bound','target_value',k.target_value??'','number')+input('Upper bound (for range)','target_high',k.target_high??'','number')+input('Source system or owner','source',k.source||'')+select('Link to dataset (optional)','dataset_id',[['','No dataset'],...S.datasets.map(d=>[d.id,d.name])],k.dataset_id||'')+select('Column containing measured values','value_field',[['','No linked measurement'],...S.datasets.flatMap(d=>d.columns.map(c=>[c.key,d.name+' · '+c.label]))],k.value_field||'')+'</div><div class="section"><button class="btn primary">Save KPI</button></div></form>')}
+function datasetForm(){modal('<h2>Create dataset</h2><form id="dataset-form">'+input('Dataset name','name','Process measurements')+input('Description','description','')+'<p class="notice">Start with Date, Category and Value columns. Add as many custom columns as needed afterward.</p><div class="section"><button class="btn primary">Create dataset</button></div></form>')}
+function actionForm(a){a=a||{};modal('<h2>'+(a.id?'Edit action':'Create action')+'</h2><form id="action-form" data-id="'+esc(a.id||'')+'"><div class="formgrid">'+input('Action title','title',a.title||'')+input('Owner','owner_name',a.owner_name||'')+input('Due date','due_date',a.due_date||'','date')+select('Phase','phase',P.map(p=>[p,p]),a.phase||S.phase)+select('Status','status',[['todo','To do'],['doing','In progress'],['done','Done']],a.status||'todo')+select('Related method / evidence','tool_id',[['','Not linked'],...S.tools.map(t=>[t.id,t.phase+' · '+t.title])],a.tool_id||'')+select('Priority','priority',[['low','Low'],['medium','Medium'],['high','High']],a.priority||'medium')+'<div class="wide">'+input('Notes / evidence','notes',a.notes||'','textarea')+'</div></div><div class="section"><button class="btn primary">Save action</button></div></form>')}
+function fileModal(){modal('<h2>Upload project file</h2><form id="file-form">'+input('Description','title','')+'<div class="field"><label>File (max 10 MB)</label><input type="file" name="file" required></div><div class="section"><button class="btn primary">Upload to private storage</button></div></form>')}
+async function persistTool(status){if(!S.tool)return;let updates={content:S.editor||{},conclusion:$('#tool-conclusion')?.value||'',status:status||S.tool.status};let t=await request('tools','update',{id:S.tool.id,data:updates});S.tool=t;S.tools=S.tools.map(a=>a.id===t.id?t:a);S.editor=structuredClone(t.content);note('Tool saved to Supabase');render()}
+async function runCalc(){if(!S.tool)return;let c=S.editor||{};let ds=S.datasets.find(d=>d.id===c.dataset_id);if(!ds)throw Error('Select a saved dataset. Each analysis must explicitly name its source table.');let policy=methodPolicy(S.tool.method_key);if(policy){for(const [field,label,type] of policy.roles){if(!type.endsWith('?')&&!c[field])throw Error('Select '+label+' before calculating.');}}let source=S.rows.filter(r=>r.dataset_id===ds.id);if(!source.length)throw Error('The chosen data table has no saved observations. Add observations in Data Library.');if(c.order)source.sort((a,b)=>String(a.values[c.order]??'').localeCompare(String(b.values[c.order]??''),undefined,{numeric:true}));let res=S.tool.method_key==='run'?computeRunChart(source,c):isSPC(S.tool.method_key)?computeSPC(S.tool.method_key,source,c):calculate(S.tool.method_key,source,c);let t=await request('tools','update',{id:S.tool.id,data:{dataset_id:ds.id,content:c,result:res,conclusion:$('#tool-conclusion')?.value||'',status:'completed'}});S.tool=t;S.tools=S.tools.map(a=>a.id===t.id?t:a);S.editor=structuredClone(t.content);note('Calculation and inputs saved');render()}
+function csvFromDataset(ds){let rs=S.rows.filter(r=>r.dataset_id===ds.id),cols=ds.columns;return csvSerialize([cols.map(c=>c.label),...rs.map(r=>cols.map(c=>r.values[c.key]))])}
+async function importCSV(file,ds){
+ let rows=parseCSV(await file.text());if(rows.length<2)throw Error('CSV must have a header and at least one data row.');
+ let headers=rows.shift().map((h,i)=>h.trim()||'Column '+(i+1));
+ if(new Set(headers.map(h=>h.toLowerCase())).size!==headers.length)throw Error('CSV column headers must be unique.');
+ if(rows.length>5000)throw Error('This version imports up to 5,000 rows at once. Split this CSV to avoid incomplete imports.');
+ let cols,sourceRows=rows;
+ if(ds){
+  const indexes=ds.columns.map(c=>headers.findIndex(h=>h.toLocaleLowerCase().trim()===c.label.toLocaleLowerCase().trim()));if(indexes.some(i=>i<0))throw Error('CSV headers must match the saved table’s column titles (case-insensitive). Missing: '+ds.columns.filter((c,i)=>indexes[i]<0).map(c=>c.label).join(', '));
+  cols=ds.columns;sourceRows=rows.map(r=>indexes.map(i=>r[i]??''));
+ }else{
+  cols=headers.map((label,i)=>({key:'csv_'+i,label,type:suggestColumnType(rows.slice(0,80).map(r=>r[i])),required:false,unit:''}));
+ }
+ const values=sourceRows.map((r,ri)=>Object.fromEntries(cols.map((c,i)=>{try{return [c.key,parseTypedValue(r[i]??'',c)]}catch(err){throw Error('CSV row '+(ri+2)+': '+err.message)}})));
+ if(!ds)ds=await request('datasets','insert',{project_id:S.project.id,name:file.name.replace(/\.csv$/i,''),columns:cols,metadata:{origin:'csv',filename:file.name}});
+ let payload=values.map(v=>({project_id:S.project.id,dataset_id:ds.id,values:v}));
+ for(let i=0;i<payload.length;i+=200){let r=await db.from(A.rows).insert(payload.slice(i,i+200));if(r.error)throw r.error}
+ S.dataset=ds;await loadProject();if(S.tool?.method_key!=='run')S.page='data';note(payload.length+' CSV observations saved to '+ds.name);render()
+}
+function reportHtml(){let body='<h1>'+esc(S.project.name)+'</h1><p><b>Objective:</b> '+esc(S.project.objective)+'</p><p><b>Location:</b> '+esc(S.project.location)+'</p>';for(let p of P){body+='<h2>'+esc(p)+'</h2><p>'+esc(S.phases.find(a=>a.phase===p)?.conclusion||'')+'</p>';for(let t of S.tools.filter(x=>x.phase===p)){body+='<h3>'+esc(t.title)+'</h3><p>'+esc(t.conclusion)+'</p><pre>'+esc(JSON.stringify(t.result?.metrics||t.content,null,2))+'</pre>'}}return '<!doctype html><html><head><meta charset="utf-8"><title>'+esc(S.project.name)+'</title><style>body{font:15px/1.5 Arial;max-width:860px;margin:50px auto;color:#15263f}h2{color:#315fb3;border-bottom:1px solid #ddd}pre{white-space:pre-wrap;background:#f7f9fc;padding:12px}</style></head><body>'+body+'</body></html>'}
+async function refresh(){await loadProjects();await loadProject();render()}
+async function command(code){
+ if(busy)return;
+ if(code==='new-project')return projectForm();
+ if(code==='edit-project')return projectForm(S.project);
+ if(code==='new-kpi')return kpiForm();
+ if(code.startsWith('edit-kpi:'))return kpiForm(S.kpis.find(k=>k.id===code.slice(9)));
+ if(code==='new-dataset')return openBuilder({S,modal,btn,request,loadProject,render,note,closeModal},null,null);
+ if(code==='edit-schema')return openBuilder({S,modal,btn,request,loadProject,render,note,closeModal},S.dataset||S.datasets[0]);
+ if(code.startsWith('template-dataset:'))return openBuilder({S,modal,btn,request,loadProject,render,note,closeModal},null,code.slice(17));
+ if(code.startsWith('builder-'))return handleBuilderAction(code,{S,modal,btn,request,loadProject,render,note,closeModal});
+ if(code==='open-data-from-tool'){if(S.tool?.id&&S.editor?.dataset_id){S.dataset=S.datasets.find(d=>d.id===S.editor.dataset_id)||null}S.page='data';return render()}
+ if(code==='new-action')return actionForm();
+ if(code.startsWith('edit-action:'))return actionForm(S.actions.find(a=>a.id===code.slice(12)));
+ if(code==='upload-file')return fileModal();
+ if(code==='close-modal')return closeModal();
+ if(code==='logout'){await db.auth.signOut();S.user=null;S.project=null;authView();return}
+ if(code==='go-report'){S.page='report';return render()}
+ if(code==='go-data'){S.page='data';S.tool=null;return render()}
+ if(code==='run-edit-schema'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');return openBuilder({S,modal,btn,request,loadProject,render,note,closeModal},ds)}
+ if(code==='run-add-draft-rows'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');addRunDraftRows(ds.columns);return render()}
+ if(code==='run-save-observations'){
+   if(!S.tool||S.tool.method_key!=='run')throw Error('Open a Run Chart tool first.');
+   let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a saved table first.');
+   const values=filledRunDraft(ds);if(!values.length)throw Error('Enter at least one measurement row, then press Save.');
+   const payload=values.map(values=>({project_id:S.project.id,dataset_id:ds.id,values}));
+   let r=await db.from(A.rows).insert(payload);if(r.error)throw r.error;
+   let tool=await request('tools','update',{id:S.tool.id,data:{dataset_id:ds.id,content:{...S.editor,dataset_id:ds.id}}});S.tool=tool;S.tools=S.tools.map(t=>t.id===tool.id?tool:t);S.editor=structuredClone(tool.content);
+   clearRunDraft(ds);await loadRows();note(values.length+' observation(s) saved into '+ds.name);return render();
+ }
+ if(code==='run-export-csv'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');return blobDownload(slug(ds.name)+'.csv',csvFromDataset(ds),'text/csv')}
+ if(code==='run-import-csv'){let ds=S.datasets.find(d=>d.id===S.editor?.dataset_id);if(!ds)throw Error('Select a table first.');let el=document.createElement('input');el.type='file';el.accept='.csv,text/csv,text/plain';el.onchange=async()=>{try{if(el.files?.length)await importCSV(el.files[0],ds)}catch(err){alert('Import failed: '+err.message)}};el.click();return}
+ 
+ if(code.startsWith('open:')){S.project=S.projects.find(p=>p.id===code.slice(5));S.page='overview';S.tool=null;await loadProject();return render()}
+ if(code.startsWith('tool:')){S.tool=S.tools.find(t=>t.id===code.slice(5));S.editor=structuredClone(S.tool.content||{});S.page=S.tool.phase;resetRunDraft();return render()}
+ if(code.startsWith('add-tool:')){let m=method(code.slice(9));let t=await request('tools','insert',{project_id:S.project.id,phase:m.phase,method_key:m.key,title:m.title,content:m.kind==='table'?{rows:[]}:m.kind==='form'?{fields:{}}:{}});S.tools.push(t);S.tool=t;S.editor=structuredClone(t.content);S.page=m.phase;note('New method instance created');return render()}
+ if(code==='close-tool'){S.tool=null;S.editor=null;resetRunDraft();return render()}
+ if(code.startsWith('delete-tool:')){let id=code.slice(12);if(!confirm('Delete this method instance and saved results?'))return;await request('tools','delete',{id});S.tools=S.tools.filter(t=>t.id!==id);S.tool=null;S.editor=null;return render()}
+ if(code==='add-workbook-row'){let m=method(S.tool.method_key);(S.editor.rows??=[]).push(Object.fromEntries(m.columns.map(f=>[f.key,''])));return render()}
+ if(code.startsWith('remove-row:')){S.editor.rows.splice(Number(code.slice(11)),1);return render()}
+ if(code==='save-tool')return persistTool();
+ if(code==='complete-tool')return persistTool(S.tool.status==='completed'?'draft':'completed');
+ if(code==='calculate')return runCalc();
+ if(code==='export-tool')return blobDownload(slug(S.tool.title)+'.json',JSON.stringify({project:S.project.name,tool:S.tool},null,2),'application/json');
+ if(code==='save-phase'||code==='toggle-phase'){let phase=S.phases.find(r=>r.phase===S.page),conclusion=$('#phase-conclusion')?.value.trim()||'';if(code==='toggle-phase'&&!conclusion)throw Error('Write a phase conclusion before completing or reopening.');let status=code==='toggle-phase'?(phase?.status==='completed'?'in_progress':'completed'):(phase?.status||'in_progress'),data={conclusion,status,completed_at:status==='completed'?new Date().toISOString():null};if(phase)await request('phases','update',{id:phase.id,data});else await request('phases','insert',{project_id:S.project.id,phase:S.page,...data});await loadProject();note(status==='completed'?'Phase marked completed':'Phase conclusion saved');return render()}
+ if(code==='add-column')return openBuilder({S,modal,btn,request,loadProject,render,note,closeModal},S.dataset||S.datasets[0]);
+ if(code==='add-data-row'){let ds=S.dataset||S.datasets[0];if(!ds)throw Error('Create a dataset first.');let values=rowFromInputs(ds,'[data-new-cell]');if(Object.values(values).every(v=>v===null||v===''))throw Error('Enter at least one cell before saving.');let r=await db.from(A.rows).insert({dataset_id:ds.id,project_id:S.project.id,values});if(r.error)throw r.error;await loadRows();note('Typed observation saved to Supabase');return render()}
+ if(code.startsWith('open-dataset:')){S.dataset=S.datasets.find(d=>d.id===code.slice(13));return render()}
+ if(code.startsWith('delete-data-row:')){if(!confirm('Delete this observation?'))return;let r=await db.from(A.rows).delete().eq('id',code.slice(16)).eq('project_id',S.project.id);if(r.error)throw r.error;await loadRows();return render()}
+ if(code==='delete-dataset'){let ds=S.dataset||S.datasets[0];if(!ds)return;let linked=S.tools.some(t=>t.dataset_id===ds.id||t.content?.dataset_id===ds.id)||S.kpis.some(k=>k.dataset_id===ds.id);if(linked)throw Error('This table is linked to a KPI or method. Remove the references before deleting it; saved analyses must remain reproducible.');if(!confirm('Permanently delete "'+ds.name+'" and its '+S.rows.filter(r=>r.dataset_id===ds.id).length+' observations?'))return;await request('datasets','delete',{id:ds.id});S.dataset=null;await loadProject();return render()}
+ if(code==='export-dataset'){let ds=S.dataset||S.datasets[0];return blobDownload(slug(ds.name)+'.csv',csvFromDataset(ds),'text/csv')}
+ if(code==='import-new'||code==='import-rows'){let el=document.createElement('input');el.type='file';el.accept='.csv,text/csv';el.onchange=async()=>{try{await importCSV(el.files[0],code==='import-rows'?(S.dataset||S.datasets[0]):null)}catch(e){alert(e.message)}};el.click();return}
+ if(code.startsWith('next-action:')){let a=S.actions.find(r=>r.id===code.slice(12));let status=a.status==='todo'?'doing':a.status==='doing'?'done':'todo';await request('actions','update',{id:a.id,data:{status}});await loadProject();return render()}
+ if(code.startsWith('download-file:')){let f=S.files.find(r=>r.id===code.slice(14));let {data,error}=await db.storage.from('sigma-studio').createSignedUrl(f.storage_path,60);if(error)throw error;window.open(data.signedUrl,'_blank','noopener');return}
+ if(code.startsWith('delete-file:')){let f=S.files.find(r=>r.id===code.slice(12));if(!confirm('Delete this file?'))return;let rr=await db.storage.from('sigma-studio').remove([f.storage_path]);if(rr.error)throw rr.error;await request('files','delete',{id:f.id});await loadProject();return render()}
+ if(code==='export-report')return blobDownload(slug(S.project.name)+'-dmaic-report.html',reportHtml(),'text/html');
+}
+document.addEventListener('click',async e=>{
+ const nav=e.target.closest('[data-nav]'),act=e.target.closest('[data-act]'),project=e.target.closest('[data-open-project]');
+ if(!nav&&!act&&!project)return;
+ if(e.target.closest('form')&&e.target.type==='submit')return;
+ e.preventDefault();try{if(nav){S.page=nav.dataset.nav;S.tool=null;S.editor=null;S.search='';render()}else if(project)await command('open:'+project.dataset.openProject);else if(act)await command(act.dataset.act)}catch(err){alert('Could not complete action: '+err.message);console.error(err)}
+});
+document.addEventListener('input',e=>{
+ const t=e.target;updateRunDraft(t);if(t.dataset.editorField&&S.editor){S.editor.fields??={};S.editor.fields[t.dataset.editorField]=t.value}
+ if(t.dataset.editorRow!==undefined&&S.editor){S.editor.rows[Number(t.dataset.editorRow)][t.dataset.editorCol]=t.value}
+ if(t.id==='method-search'){S.search=t.value;let pos=t.selectionStart;render();let newEl=$('#method-search');newEl?.focus();newEl?.setSelectionRange(pos,pos)}
+});
+document.addEventListener('change',async e=>{
+ const t=e.target;try{
+ if(t.id==='project-switch'){S.project=S.projects.find(p=>p.id===t.value)||null;S.page=S.project?'overview':'projects';S.tool=null;await loadProject();render()}
+ if(t.dataset.datasetCell){let row=S.rows.find(r=>r.id===t.dataset.datasetCell),ds=S.datasets.find(d=>d.id===row.dataset_id),column=ds.columns.find(c=>c.key===t.dataset.col);if(!column)throw Error('Column no longer exists.');let value;try{value=parseTypedValue(t.value,column)}catch(e){t.value=row.values[column.key]??'';throw e}let values={...row.values,[column.key]:value};let r=await db.from(A.rows).update({values}).eq('id',row.id).eq('project_id',S.project.id);if(r.error)throw r.error;row.values=values;note('Validated value saved')}
+ if(['dataset_id','x','y','order','lsl','usl','opportunities'].includes(t.name)&&S.editor&&S.tool){S.editor[t.name]=t.value;if(t.name==='dataset_id'){S.editor.x='';S.editor.y='';S.editor.order='';render()}}
+ }catch(err){alert(err.message)}
+});
+document.addEventListener('submit',async e=>{
+ const f=e.target;if(!['auth-form','project-form','kpi-form','dataset-form','action-form','file-form'].includes(f.id))return;e.preventDefault();if(busy)return;busy=true;let fd=new FormData(f),g=k=>String(fd.get(k)||'').trim();try{
+ if(f.id==='auth-form'){let mode=e.submitter?.value||'login',res=mode==='signup'?await db.auth.signUp({email:g('email'),password:g('password')}):await db.auth.signInWithPassword({email:g('email'),password:g('password')});if(res.error)throw res.error;if(!res.data.session){authView('Account created. Check your email for a confirmation link, then sign in.');return}S.user=res.data.user;await refresh();return}
+ if(f.id==='project-form'){let payload={name:g('name'),location:g('location'),leader:g('leader'),sponsor:g('sponsor'),methodology:g('methodology'),objective:g('objective')};if(!payload.name)throw Error('Project name required.');if(f.dataset.id){let rr=await db.from(A.projects).update(payload).eq('id',f.dataset.id).select().single();if(rr.error)throw rr.error}else{let rr=await db.from(A.projects).insert(payload).select().single();if(rr.error)throw rr.error;S.project=rr.data}closeModal();S.page='overview';await refresh();return}
+ if(f.id==='kpi-form'){let id=f.dataset.id;let payload={project_id:S.project.id,name:g('name'),category:g('category'),unit:g('unit'),direction:g('direction'),source:g('source'),dataset_id:g('dataset_id')||null,value_field:g('value_field'),baseline:g('baseline')===''?null:Number(g('baseline')),target_value:g('target_value')===''?null:Number(g('target_value')),target_high:g('target_high')===''?null:Number(g('target_high'))};if(!payload.name)throw Error('KPI name is required.');if(payload.direction==='range'&&(payload.target_high==null||payload.target_value==null||payload.target_high<payload.target_value))throw Error('Range needs valid lower and upper bounds.');if(id)await request('kpis','update',{id,data:payload});else await request('kpis','insert',payload);closeModal();await loadProject();return render()}
+ if(f.id==='dataset-form'){let d=await request('datasets','insert',{project_id:S.project.id,name:g('name'),description:g('description'),columns:[{key:'date',label:'Date',type:'date'},{key:'category',label:'Category',type:'text'},{key:'value',label:'Value',type:'number'}]});S.dataset=d;closeModal();await loadProject();return render()}
+ if(f.id==='action-form'){let payload={project_id:S.project.id,title:g('title'),owner_name:g('owner_name'),due_date:g('due_date')||null,phase:g('phase'),status:g('status'),tool_id:g('tool_id')||null,priority:g('priority'),notes:g('notes')};if(!payload.title)throw Error('Action title required.');if(f.dataset.id)await request('actions','update',{id:f.dataset.id,data:payload});else await request('actions','insert',payload);closeModal();await loadProject();return render()}
+ if(f.id==='file-form'){let file=fd.get('file');if(!file||!file.size)throw Error('Choose a file.');if(file.size>10485760)throw Error('Files must be under 10 MB.');let path=S.user.id+'/'+S.project.id+'/'+uid()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');let r=await db.storage.from('sigma-studio').upload(path,file,{contentType:file.type||'application/octet-stream'});if(r.error)throw r.error;try{await request('files','insert',{project_id:S.project.id,title:g('title')||file.name,storage_path:path,mime_type:file.type||''})}catch(err){await db.storage.from('sigma-studio').remove([path]);throw err}closeModal();await loadProject();return render()}
+ }catch(err){alert('Save failed: '+err.message);console.error(err)}finally{busy=false}
+});
+async function start(){const {data,error}=await db.auth.getSession();if(error)console.error(error);S.user=data?.session?.user||null;if(!S.user){authView();return}try{await refresh()}catch(e){authView('Database error: '+e.message);console.error(e)}}
+db.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){S.user=null;S.project=null;authView()}});
+start();
+
+</script>
+</body>
+</html>
